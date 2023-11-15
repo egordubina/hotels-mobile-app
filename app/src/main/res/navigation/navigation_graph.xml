@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/hotelScreen">
+
+    <fragment
+        android:id="@+id/hotelScreen"
+        android:name="ru.egordubina.hotels.screens.HotelScreen"
+        android:label="HotelScreen"
+        tools:layout="@layout/fragment__hotel_screen" />
+
+</navigation>
