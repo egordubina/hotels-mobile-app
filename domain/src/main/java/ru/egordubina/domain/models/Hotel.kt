@@ -9,5 +9,5 @@ data class Hotel(
     val rating: Byte,
     val ratingName: String,
     val imagesUrls: List<String>,
-    val aboutHotel: Pair<String, List<String>>,
+    val aboutHotel: InfoAboutHotel,
 )

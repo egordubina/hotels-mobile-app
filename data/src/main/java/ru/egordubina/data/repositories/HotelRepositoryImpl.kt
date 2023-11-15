@@ -5,6 +5,8 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
+import ru.egordubina.data.models.Hotel
+import ru.egordubina.data.models.asDomain
 import ru.egordubina.domain.repositories.HotelRepository
 import ru.egordubina.domain.models.Hotel as DomainHotel
 
@@ -17,6 +19,7 @@ class HotelRepositoryImpl : HotelRepository {
         val response = client.use {
             it.get(API_URL).bodyAsText()
         }
-        return Json.decodeFromString(response)
+        val result = Json.decodeFromString<Hotel>(response)
+        return result.asDomain()
     }
 }

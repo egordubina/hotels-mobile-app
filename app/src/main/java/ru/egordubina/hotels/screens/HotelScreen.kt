@@ -5,20 +5,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
+import ru.egordubina.hotels.databinding.FragmentHotelScreenBinding
+import ru.egordubina.hotels.uistates.HotelScreenUiState
+import ru.egordubina.hotels.viewmodels.HotelScreenViewModel
 
+@AndroidEntryPoint
 class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
+    private var _binding: FragmentHotelScreenBinding? = null
+    private val binding get() = checkNotNull(_binding)
+    private val vm: HotelScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                vm.uiState.collect { uiState ->
+                    when (uiState) {
+                        is HotelScreenUiState.Content -> {
+                            binding.textViewHotelTitle.text = uiState.name
+                        }
+                        HotelScreenUiState.Error -> {
+
+                        }
+                        HotelScreenUiState.Loading -> {
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        _binding = FragmentHotelScreenBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,5 +58,6 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
     }
 }
