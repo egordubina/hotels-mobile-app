@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -29,13 +30,26 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                 vm.uiState.collect { uiState ->
                     when (uiState) {
                         is HotelScreenUiState.Content -> {
-                            binding.textViewHotelTitle.text = uiState.name
+                            binding.apply {
+                                textViewHotelTitle.text = uiState.name
+                                buttonHotelAddress.text = uiState.address
+                                textViewPrice.text = "от ${uiState.price} ₽"
+                                textViewPriceLabel.text = uiState.priceLabel
+                                chipRaiting.isVisible = true
+                                chipRaiting.text = "${uiState.rating} ${uiState.ratingName}"
+                            }
                         }
+
                         HotelScreenUiState.Error -> {
-
+                            binding.apply {
+                                chipRaiting.isVisible = false
+                            }
                         }
-                        HotelScreenUiState.Loading -> {
 
+                        HotelScreenUiState.Loading -> {
+                            binding.apply {
+                                chipRaiting.isVisible = false
+                            }
                         }
                     }
                 }

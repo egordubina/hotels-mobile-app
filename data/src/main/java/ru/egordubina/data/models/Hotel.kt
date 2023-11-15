@@ -2,6 +2,7 @@ package ru.egordubina.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.Locale
 import ru.egordubina.domain.models.Hotel as DomainHotel
 import ru.egordubina.domain.models.InfoAboutHotel as DomainInfoAboutHotel
 
@@ -29,7 +30,7 @@ fun Hotel.asDomain(): DomainHotel = DomainHotel(
     name = this.name,
     address = this.address,
     minimalPrice = this.minimalPrice,
-    priceForIt = this.priceForIt,
+    priceForIt = this.priceForIt.lowercase(),
     rating = this.rating,
     ratingName = this.ratingName,
     imagesUrls = this.imagesUrls,

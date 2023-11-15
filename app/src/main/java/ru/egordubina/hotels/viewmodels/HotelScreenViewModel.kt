@@ -30,7 +30,14 @@ class HotelScreenViewModel @Inject constructor(
                 // todo: ищменитть модель с domain на ui и сделать маппер
                 val result = loadHotelUseCase.loadHotel()
                 Log.d("RESULT", result.toString())
-                _uiState.value = HotelScreenUiState.Content(name = result.name)
+                _uiState.value = HotelScreenUiState.Content(
+                    name = result.name,
+                    address = result.address,
+                    price = result.minimalPrice,
+                    priceLabel = result.priceForIt,
+                    rating = result.rating,
+                    ratingName = result.ratingName
+                )
             } catch (e: Exception) {
                 Log.e("RESULT", e.toString())
                 _uiState.value = HotelScreenUiState.Error

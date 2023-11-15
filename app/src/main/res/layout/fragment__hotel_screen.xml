@@ -16,14 +16,29 @@
         app:titleCentered="true" />
 
     <!--  TODO: ViewPager для картинок  -->
-    
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager__images_slider"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
-        android:layout_height="257dp" />
+        android:layout_height="257dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.google.android.material.chip.Chip
+        tools:text="5 Превосходно"
+        android:layout_marginStart="16dp"
+        app:chipBackgroundColor="#33FFC700"
+        app:chipStrokeWidth="0dp"
+        app:chipCornerRadius="5dp"
+        android:textColor="#FFFFA800"
+        app:chipIconTint="#FFFFA800"
+        app:chipIcon="@drawable/icon__star"
+        android:id="@+id/chip__raiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider" />
 
     <TextView
         android:id="@+id/text_view__hotel_title"
@@ -33,7 +48,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager__images_slider"
+        app:layout_constraintTop_toBottomOf="@id/chip__raiting"
         tools:text="Steigenberger Makadi" />
 
     <TextView
@@ -45,7 +60,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view__hotel_title"
+        app:layout_constraintTop_toBottomOf="@id/text_view__hotel_title"
         tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
     <TextView
@@ -56,7 +71,7 @@
         android:layout_marginTop="16dp"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button__hotel_address"
+        app:layout_constraintTop_toBottomOf="@id/button__hotel_address"
         tools:text="от 134 673 ₽" />
 
     <TextView
@@ -66,10 +81,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view__price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_view__price"
-        app:layout_constraintTop_toTopOf="@+id/text_view__price"
+        app:layout_constraintStart_toEndOf="@id/text_view__price"
+        app:layout_constraintTop_toTopOf="@id/text_view__price"
         tools:text="за тур с перелётом" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
