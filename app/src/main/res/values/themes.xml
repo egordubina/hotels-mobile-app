@@ -5,6 +5,9 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="materialButtonStyle">@style/Widget.Hotels.Button</item>
         <item name="toolbarStyle">@style/Widget.Hotels.Toolbar</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="Theme.Hotels" parent="Base.Theme.Hotels" />

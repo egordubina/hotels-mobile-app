@@ -6,7 +6,7 @@ data class Hotel(
     val address: String,
     val minimalPrice: Int,
     val priceForIt: String,
-    val rating: Byte,
+    val rating: Int,
     val ratingName: String,
     val imagesUrls: List<String>,
     val aboutHotel: InfoAboutHotel,

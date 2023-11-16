@@ -38,7 +38,8 @@ class HotelScreenViewModel @Inject constructor(
                     rating = result.rating,
                     ratingName = result.ratingName,
                     hotelDescription = result.aboutHotel.description,
-                    peculiarities = result.aboutHotel.peculiarities
+                    peculiarities = result.aboutHotel.peculiarities,
+                    imagesUrls = result.imagesUrls
                 )
             } catch (e: Exception) {
                 Log.e("RESULT", e.toString())

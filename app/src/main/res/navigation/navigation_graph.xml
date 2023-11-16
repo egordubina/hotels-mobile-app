@@ -9,6 +9,21 @@
         android:id="@+id/hotelScreen"
         android:name="ru.egordubina.hotels.screens.HotelScreen"
         android:label="HotelScreen"
-        tools:layout="@layout/fragment__hotel_screen" />
+        tools:layout="@layout/fragment__hotel_screen" >
+        <action
+            android:id="@+id/action_hotelScreen_to_successPay"
+            app:destination="@id/successPay"
+            app:popUpTo="@id/successPay"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment__success_pay"
+        android:id="@+id/successPay"
+        android:name="ru.egordubina.hotels.screens.SuccessPay"
+        android:label="SuccessPay" >
+        <action
+            android:id="@+id/action_successPay_to_hotelScreen"
+            app:destination="@id/hotelScreen" />
+    </fragment>
 
 </navigation>

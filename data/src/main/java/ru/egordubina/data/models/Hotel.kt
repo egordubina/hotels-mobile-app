@@ -13,7 +13,7 @@ data class Hotel(
     @SerialName("adress") val address: String,
     @SerialName("minimal_price") val minimalPrice: Int,
     @SerialName("price_for_it") val priceForIt: String,
-    @SerialName("rating") val rating: Byte,
+    @SerialName("rating") val rating: Int,
     @SerialName("rating_name") val ratingName: String,
     @SerialName("image_urls") val imagesUrls: List<String>,
     @SerialName("about_the_hotel") val aboutHotel: InfoAboutHotel,

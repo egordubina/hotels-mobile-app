@@ -16,7 +16,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -24,24 +24,45 @@
                 android:layout_height="match_parent"
                 app:title="@string/label__hotel" />
 
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/loading_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
             app:strokeWidth="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
                 <!--  TODO: ViewPager для картинок  -->
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/start_padding"
+                    app:layout_constraintGuide_begin="16dp"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_padding"
+                    app:layout_constraintGuide_end="16dp"
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_height="0dp" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager__images_slider"
                     android:layout_width="0dp"
                     android:layout_height="257dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,29 +71,38 @@
                     android:id="@+id/chip__raiting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:enabled="false"
                     android:textColor="#FFFFA800"
                     app:chipBackgroundColor="#33FFC700"
                     app:chipCornerRadius="5dp"
+                    app:chipEndPadding="10dp"
                     app:chipIcon="@drawable/icon__star"
                     app:chipIconTint="#FFFFA800"
+                    app:chipStartPadding="10dp"
                     app:chipStrokeWidth="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:ensureMinTouchTargetSize="false"
+                    app:layout_constraintStart_toStartOf="@id/start_padding"
                     app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider"
                     tools:text="5 Превосходно" />
 
                 <TextView
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:id="@+id/text_view__hotel_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:includeFontPadding="false"
                     android:textAppearance="@style/TextAppearance.Hotels.Title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/end_padding"
+                    app:layout_constraintStart_toStartOf="@id/start_padding"
                     app:layout_constraintTop_toBottomOf="@id/chip__raiting"
                     tools:text="Steigenberger Makadi" />
 
                 <TextView
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:id="@+id/button__hotel_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -80,8 +110,8 @@
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:includeFontPadding="false"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/end_padding"
+                    app:layout_constraintStart_toStartOf="@id/start_padding"
                     app:layout_constraintTop_toBottomOf="@id/text_view__hotel_title"
                     tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
@@ -94,7 +124,7 @@
                     android:includeFontPadding="false"
                     android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/start_padding"
                     app:layout_constraintTop_toBottomOf="@id/button__hotel_address"
                     tools:text="от 134 673 ₽" />
 
@@ -109,7 +139,7 @@
                     android:textSize="16sp"
                     app:layout_constraintBaseline_toBaselineOf="@id/text_view__price"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/end_padding"
                     app:layout_constraintStart_toEndOf="@id/text_view__price"
                     tools:text="за тур с перелётом" />
 
@@ -121,6 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:cardCornerRadius="12dp"
             app:strokeWidth="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -144,7 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:chipSpacingVertical="0dp"
+                    app:chipSpacing="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view__about_hotel" />
@@ -170,22 +201,24 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginTop="12dp"
-            app:strokeWidth="0dp"
-            app:cardCornerRadius="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="0dp"
+            app:strokeWidth="0dp">
 
             <com.google.android.material.divider.MaterialDivider
-                app:dividerColor="#FFE8E9EC"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:dividerColor="#FFE8E9EC" />
 
             <Button
                 android:id="@+id/button__to_choice_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="#FF0D72FF"
                 android:text="@string/label__to_choice_number"
                 android:textSize="16sp"
