@@ -42,7 +42,7 @@
             android:id="@+id/text_view__title_successfully_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/medium_indent"
             android:layout_marginTop="32dp"
             android:text="Ваш заказ принят в работу"
             android:textAlignment="center"
@@ -71,7 +71,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/medium_indent"
         android:text="@string/label__cool" />
 
 </RelativeLayout>

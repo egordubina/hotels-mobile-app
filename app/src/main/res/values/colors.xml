@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0D72FF</color>
+    <color name="chipColor">#FFFFA800</color>
+    <color name="chipColor20">#33FFC700</color>
 </resources>

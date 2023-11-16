@@ -5,7 +5,7 @@
     android:id="@+id/image__hotel_slider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="16dp"
+    android:paddingHorizontal="@dimen/medium_indent"
     android:scaleType="center"
     app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
     tools:src="@tools:sample/backgrounds/scenic">

@@ -1,9 +1,7 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Base.Theme.Hotels" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/blue</item>
         <item name="materialButtonStyle">@style/Widget.Hotels.Button</item>
+        <item name="linearProgressIndicatorStyle">@style/Widget.Hotels.LinearProgressIndicator</item>
         <item name="toolbarStyle">@style/Widget.Hotels.Toolbar</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>

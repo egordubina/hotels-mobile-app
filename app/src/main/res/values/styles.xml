@@ -19,9 +19,16 @@
 
 
     <style name="ShapeAppearance.Hotel.Button" parent="">
-        <item name="cornerSize">16dp</item>
+        <item name="cornerSize">@dimen/medium_corner_size</item>
         <item name="cornerFamily">rounded</item>
     </style>
+
+
+    <style name="ThemeOverlay.Hotels.Button" parent="ThemeOverlay.Material3.Button">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorSurface">@color/white</item>
+    </style>
+
 
     <style name="Widget.Hotels.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.Hotels.Toolbar.Title</item>
@@ -31,5 +38,11 @@
     <style name="Widget.Hotels.Button" parent="Widget.Material3.Button">
         <item name="android:textAppearance">@style/TextAppearance.Hotels.Button.Text</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Hotel.Button</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.Button</item>
+    </style>
+
+    <style name="Widget.Hotels.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="trackColor">@color/white</item>
     </style>
 </resources>

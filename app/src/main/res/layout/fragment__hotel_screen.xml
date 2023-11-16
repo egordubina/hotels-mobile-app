@@ -46,14 +46,14 @@
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/start_padding"
-                    app:layout_constraintGuide_begin="16dp"
+                    app:layout_constraintGuide_begin="@dimen/medium_indent"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/end_padding"
-                    app:layout_constraintGuide_end="16dp"
+                    app:layout_constraintGuide_end="@dimen/medium_indent"
                     android:layout_width="0dp"
                     android:orientation="vertical"
                     android:layout_height="0dp" />
@@ -72,14 +72,14 @@
                     android:id="@+id/chip__raiting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/medium_indent"
                     android:enabled="false"
-                    android:textColor="#FFFFA800"
-                    app:chipBackgroundColor="#33FFC700"
+                    android:textColor="@color/chipColor"
+                    app:chipBackgroundColor="@color/chipColor20"
                     app:chipCornerRadius="5dp"
                     app:chipEndPadding="10dp"
                     app:chipIcon="@drawable/icon__star"
-                    app:chipIconTint="#FFFFA800"
+                    app:chipIconTint="@color/chipColor"
                     app:chipStartPadding="10dp"
                     app:chipStrokeWidth="0dp"
                     app:ensureMinTouchTargetSize="false"
@@ -93,7 +93,7 @@
                     android:id="@+id/text_view__hotel_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/small_indent"
                     android:includeFontPadding="false"
                     android:textAppearance="@style/TextAppearance.Hotels.Title"
                     app:layout_constraintEnd_toEndOf="@id/end_padding"
@@ -107,7 +107,7 @@
                     android:id="@+id/button__hotel_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/small_indent"
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:includeFontPadding="false"
                     android:textSize="14sp"
@@ -120,7 +120,7 @@
                     android:id="@+id/text_view__price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/medium_indent"
                     android:fontFamily="@font/sf_pro_display_semibold"
                     android:includeFontPadding="false"
                     android:textSize="30sp"
@@ -133,7 +133,7 @@
                     android:id="@+id/text_view__price_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/small_indent"
                     android:fontFamily="@font/sf_pro_display_regular"
                     android:includeFontPadding="false"
                     android:textColor="#FF828796"
@@ -152,14 +152,14 @@
             android:id="@+id/card__bottom_info_hotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/small_indent"
             app:cardCornerRadius="12dp"
             app:strokeWidth="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="@dimen/medium_indent">
 
                 <TextView
                     android:id="@+id/text_view__about_hotel"
@@ -176,8 +176,8 @@
                     android:id="@+id/chip_group__peculiarities"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:chipSpacing="8dp"
+                    android:layout_marginTop="@dimen/medium_indent"
+                    app:chipSpacing="@dimen/small_indent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view__about_hotel" />
@@ -219,9 +219,9 @@
                 android:id="@+id/button__to_choice_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginHorizontal="@dimen/medium_indent"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/medium_indent"
                 android:backgroundTint="#FF0D72FF"
                 android:text="@string/label__to_choice_number"
                 android:textSize="16sp"
