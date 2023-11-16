@@ -109,6 +109,7 @@
                     tools:text="Steigenberger Makadi" />
 
                 <TextView
+                    android:textColor="@color/blue"
                     android:id="@+id/button__hotel_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

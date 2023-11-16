@@ -2,9 +2,8 @@ package ru.egordubina.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.Locale
+import ru.egordubina.data.repositories.asDomain
 import ru.egordubina.domain.models.Hotel as DomainHotel
-import ru.egordubina.domain.models.InfoAboutHotel as DomainInfoAboutHotel
 
 @Serializable
 data class Hotel(
@@ -19,12 +18,6 @@ data class Hotel(
     @SerialName("about_the_hotel") val aboutHotel: InfoAboutHotel,
 )
 
-@Serializable
-data class InfoAboutHotel(
-    @SerialName("description") val description: String,
-    @SerialName("peculiarities") val peculiarities: List<String>,
-)
-
 fun Hotel.asDomain(): DomainHotel = DomainHotel(
     id = this.id,
     name = this.name,
@@ -35,9 +28,4 @@ fun Hotel.asDomain(): DomainHotel = DomainHotel(
     ratingName = this.ratingName,
     imagesUrls = this.imagesUrls,
     aboutHotel = this.aboutHotel.asDomain(),
-)
-
-fun InfoAboutHotel.asDomain(): DomainInfoAboutHotel = DomainInfoAboutHotel(
-    description = this.description,
-    peculiarities = this.peculiarities
 )

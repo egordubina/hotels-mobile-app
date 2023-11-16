@@ -26,10 +26,9 @@ class HotelScreenViewModel @Inject constructor(
     init {
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
+            _uiState.value = HotelScreenUiState.Loading
             try {
-                // todo: ищменитть модель с domain на ui и сделать маппер
                 val result = loadHotelUseCase.loadHotel()
-                Log.d("RESULT", result.toString())
                 _uiState.value = HotelScreenUiState.Content(
                     name = result.name,
                     address = result.address,
@@ -42,7 +41,6 @@ class HotelScreenViewModel @Inject constructor(
                     imagesUrls = result.imagesUrls
                 )
             } catch (e: Exception) {
-                Log.e("RESULT", e.toString())
                 _uiState.value = HotelScreenUiState.Error
             }
         }
