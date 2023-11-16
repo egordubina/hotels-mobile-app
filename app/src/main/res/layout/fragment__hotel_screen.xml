@@ -128,6 +128,7 @@
                     tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/text_view__price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

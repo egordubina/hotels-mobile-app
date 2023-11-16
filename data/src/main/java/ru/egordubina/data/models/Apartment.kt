@@ -18,7 +18,7 @@ fun Apartment.asDomain(): DomainApartment = DomainApartment(
     id = this.id,
     name = this.name,
     price = this.price,
-    pricePer = this.pricePer,
+    pricePer = this.pricePer.lowercase(),
     peculiarities = this.peculiarities,
     imagesUrls = this.imagesUrls
 )

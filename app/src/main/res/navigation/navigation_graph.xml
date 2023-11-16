@@ -21,7 +21,9 @@
         android:label="SuccessPay" >
         <action
             android:id="@+id/action_successPay_to_hotelScreen"
-            app:destination="@id/hotelScreen" />
+            app:destination="@id/hotelScreen"
+            app:popUpTo="@id/hotelScreen"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment__choice_of_apartments"
@@ -31,6 +33,9 @@
         <action
             android:id="@+id/action_choiceApartments_to_successPay"
             app:destination="@id/successPay" />
+        <argument
+            android:name="hotel_name"
+            app:argType="string" />
     </fragment>
 
 </navigation>

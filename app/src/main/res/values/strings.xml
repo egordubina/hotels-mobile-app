@@ -5,5 +5,6 @@
     <string name="label__about_hotel">Об отеле</string>
     <string name="successfully_paid">Заказ оплачен</string>
     <string name="label__cool">Супер!</string>
-    <string name="price_from">от %d ₽</string>
+    <string name="price_from">от %s</string>
+    <string name="price">%s ₽</string>
 </resources>

@@ -18,6 +18,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import ru.egordubina.domain.utils.toRubInt
 import ru.egordubina.hotels.R
 import ru.egordubina.hotels.adapters.ImageSliderAdapter
 import ru.egordubina.hotels.databinding.FragmentHotelScreenBinding
@@ -64,10 +65,6 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -78,7 +75,7 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
             textViewHotelTitle.text = uiState.name
             buttonHotelAddress.text = uiState.address
             // fixme: исправить отображение стоимости
-            textViewPrice.text = requireContext().getString(R.string.price_from, uiState.price)
+            textViewPrice.text = requireContext().getString(R.string.price_from, uiState.price.toRubInt())
             textViewPriceLabel.text = uiState.priceLabel
             chipRaiting.text = "${uiState.rating} ${uiState.ratingName}"
             textViewHotelDescription.text = uiState.hotelDescription
@@ -86,9 +83,8 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
             chipGroupPeculiarities.removeAllViews()
             uiState.peculiarities.forEach(::addChipToPeculiarities)
             buttonToChoiceNumber.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_hotelScreen_to_choiceApartments
-                )
+                val action = HotelScreenDirections.actionHotelScreenToChoiceApartments(hotelName = uiState.name)
+                findNavController().navigate(action)
             }
         }
     }

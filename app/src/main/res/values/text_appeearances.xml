@@ -2,13 +2,14 @@
 <resources>
     <style name="TextAppearance.Hotels.Title" parent="">
         <item name="android:textSize">@dimen/title_text_size</item>
-        <item name="android:textColor">#FF000000</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
     </style>
 
     <style name="TextAppearance.Hotels.Toolbar.Title" parent="">
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     
     <style name="TextAppearance.Hotels.Button.Text" parent="">

@@ -22,6 +22,9 @@ class ImageSliderAdapter(private val imagesUrls: List<String>) :
     override fun getItemCount(): Int = imagesUrls.size
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
-        holder.image.load(imagesUrls[position])
+        holder.image.load(imagesUrls[position]) {
+            crossfade(true)
+            allowHardware(false)
+        }
     }
 }

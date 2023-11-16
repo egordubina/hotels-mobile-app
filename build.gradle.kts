@@ -11,6 +11,7 @@ plugins {
 buildscript {
     dependencies {
         classpath(libs.hilt.android.gradle.plugin)
+        classpath(libs.androidx.navigation.safe.args.gradle.plugin)
     }
 }
 true // Needed to make the Suppress annotation work for the plugins block

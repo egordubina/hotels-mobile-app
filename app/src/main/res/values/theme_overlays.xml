@@ -5,7 +5,7 @@
         <item name="colorSurface">@color/white</item>
     </style>
 
-    <style name="ThemeOverlay.Hotels.LinearProgressInndicator" parent="">
+    <style name="ThemeOverlay.Hotels.LinearProgressIndicator" parent="">
         <item name="colorPrimary">@color/blue</item>
     </style>
 

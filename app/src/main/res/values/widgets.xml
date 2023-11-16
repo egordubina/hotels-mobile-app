@@ -12,7 +12,7 @@
     </style>
 
     <style name="Widget.Hotels.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.LinearProgressInndicator</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.LinearProgressIndicator</item>
         <item name="trackColor">@color/white</item>
     </style>
 
