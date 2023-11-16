@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Отели</string>
     <string name="label__hotel">Отель</string>
+    <string name="label__to_choice_number">К выбору номера</string>
+    <string name="label__about_hotel">Об отеле</string>
+    <string name="successfully_paid">Заказ оплачен</string>
+    <string name="label__cool">Супер!</string>
 </resources>

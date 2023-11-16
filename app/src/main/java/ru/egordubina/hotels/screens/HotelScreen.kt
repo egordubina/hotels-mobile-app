@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
@@ -28,6 +30,11 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 vm.uiState.collect { uiState ->
+                    binding.apply {
+                        buttonToChoiceNumber.isVisible = uiState is HotelScreenUiState.Content
+                        chipRaiting.isVisible = uiState is HotelScreenUiState.Content
+                        textViewAboutHotel.isVisible = uiState is HotelScreenUiState.Content
+                    }
                     when (uiState) {
                         is HotelScreenUiState.Content -> {
                             binding.apply {
@@ -35,21 +42,17 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                                 buttonHotelAddress.text = uiState.address
                                 textViewPrice.text = "от ${uiState.price} ₽"
                                 textViewPriceLabel.text = uiState.priceLabel
-                                chipRaiting.isVisible = true
                                 chipRaiting.text = "${uiState.rating} ${uiState.ratingName}"
+                                textViewHotelDescription.text = uiState.hotelDescription
+                                chipGroupPeculiarities.removeAllViews()
+                                uiState.peculiarities.forEach(::addChipToPeculiarities)
                             }
                         }
 
                         HotelScreenUiState.Error -> {
-                            binding.apply {
-                                chipRaiting.isVisible = false
-                            }
                         }
 
                         HotelScreenUiState.Loading -> {
-                            binding.apply {
-                                chipRaiting.isVisible = false
-                            }
                         }
                     }
                 }
@@ -73,5 +76,12 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun addChipToPeculiarities(feature: String) {
+        val chip = Chip(requireContext())
+        chip.text = feature
+        chip.isEnabled = false
+        binding.chipGroupPeculiarities.addView(chip)
     }
 }

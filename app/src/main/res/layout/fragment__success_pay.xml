@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/arrow_back"
+            app:title="@string/successfully_paid" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button__to_hotel_screen"
+        android:layout_below="@id/app_bar_layout"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image__successfully_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/successfully_payment"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
+
+        <TextView
+            android:id="@+id/text_view__title_successfully_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Ваш заказ принят в работу"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Hotels.Title"
+            app:layout_constraintTop_toBottomOf="@id/image__successfully_payment" />
+
+        <TextView
+            android:id="@+id/text_view__text_successfully_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="23dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textAlignment="center"
+            android:textColor="#FF828796"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление." />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button__to_hotel_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/label__cool" />
+
+</RelativeLayout>

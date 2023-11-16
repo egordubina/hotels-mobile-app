@@ -9,6 +9,8 @@ sealed class HotelScreenUiState {
         val price: Int,
         val priceLabel: String,
         val rating: Byte,
-        val ratingName: String
+        val ratingName: String,
+        val hotelDescription: String,
+        val peculiarities: List<String>
     ) : HotelScreenUiState()
 }

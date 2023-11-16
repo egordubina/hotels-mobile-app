@@ -36,7 +36,9 @@ class HotelScreenViewModel @Inject constructor(
                     price = result.minimalPrice,
                     priceLabel = result.priceForIt,
                     rating = result.rating,
-                    ratingName = result.ratingName
+                    ratingName = result.ratingName,
+                    hotelDescription = result.aboutHotel.description,
+                    peculiarities = result.aboutHotel.peculiarities
                 )
             } catch (e: Exception) {
                 Log.e("RESULT", e.toString())
