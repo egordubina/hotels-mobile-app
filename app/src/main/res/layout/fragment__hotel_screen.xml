@@ -33,6 +33,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card__top_info_hotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
@@ -148,6 +149,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card__bottom_info_hotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -201,6 +203,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card__button_hotel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

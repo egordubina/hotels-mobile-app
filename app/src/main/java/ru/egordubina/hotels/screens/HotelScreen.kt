@@ -39,31 +39,12 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                 vm.uiState.collect { uiState ->
                     binding.apply {
                         loadingIndicator.isVisible = uiState == HotelScreenUiState.Loading
-                        buttonToChoiceNumber.isVisible = uiState is HotelScreenUiState.Content
-                        chipRaiting.isVisible = uiState is HotelScreenUiState.Content
-                        textViewAboutHotel.isVisible = uiState is HotelScreenUiState.Content
+                        cardBottomInfoHotel.isVisible = uiState is HotelScreenUiState.Content
+                        cardButtonHotel.isVisible = uiState is HotelScreenUiState.Content
+                        cardTopInfoHotel.isVisible = uiState is HotelScreenUiState.Content
                     }
                     when (uiState) {
-                        is HotelScreenUiState.Content -> {
-                            binding.apply {
-                                textViewHotelTitle.text = uiState.name
-                                buttonHotelAddress.text = uiState.address
-                                textViewPrice.text =
-                                    requireContext().getString(R.string.price_from, uiState.price)
-                                textViewPriceLabel.text = uiState.priceLabel
-                                chipRaiting.text = "${uiState.rating} ${uiState.ratingName}"
-                                textViewHotelDescription.text = uiState.hotelDescription
-                                viewPagerImagesSlider.adapter =
-                                    ImageSliderAdapter(uiState.imagesUrls)
-                                chipGroupPeculiarities.removeAllViews()
-                                uiState.peculiarities.forEach(::addChipToPeculiarities)
-                                buttonToChoiceNumber.setOnClickListener {
-                                    findNavController().navigate(
-                                        R.id.action_hotelScreen_to_successPay
-                                    )
-                                }
-                            }
-                        }
+                        is HotelScreenUiState.Content -> showContent(uiState)
 
                         HotelScreenUiState.Error -> {}
 
@@ -90,6 +71,25 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showContent(uiState: HotelScreenUiState.Content) {
+        binding.apply {
+            textViewHotelTitle.text = uiState.name
+            buttonHotelAddress.text = uiState.address
+            textViewPrice.text = requireContext().getString(R.string.price_from, uiState.price)
+            textViewPriceLabel.text = uiState.priceLabel
+            chipRaiting.text = "${uiState.rating} ${uiState.ratingName}"
+            textViewHotelDescription.text = uiState.hotelDescription
+            viewPagerImagesSlider.adapter = ImageSliderAdapter(uiState.imagesUrls)
+            chipGroupPeculiarities.removeAllViews()
+            uiState.peculiarities.forEach(::addChipToPeculiarities)
+            buttonToChoiceNumber.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_hotelScreen_to_successPay
+                )
+            }
+        }
     }
 
     private fun addChipToPeculiarities(feature: String) {
