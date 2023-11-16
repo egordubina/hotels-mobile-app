@@ -58,6 +58,13 @@
                     android:orientation="vertical"
                     android:layout_height="0dp" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/bottom_padding"
+                    app:layout_constraintGuide_end="@dimen/medium_indent"
+                    android:layout_width="0dp"
+                    android:orientation="horizontal"
+                    android:layout_height="0dp" />
+
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager__images_slider"
                     android:layout_width="0dp"
@@ -124,7 +131,7 @@
                     android:fontFamily="@font/sf_pro_display_semibold"
                     android:includeFontPadding="false"
                     android:textSize="30sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/bottom_padding"
                     app:layout_constraintStart_toStartOf="@id/start_padding"
                     app:layout_constraintTop_toBottomOf="@id/button__hotel_address"
                     tools:text="от 134 673 ₽" />
