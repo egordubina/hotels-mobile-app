@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ThemeOverlay.Hotels.Button" parent="ThemeOverlay.Material3.Button">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorSurface">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.Hotels.LinearProgressInndicator" parent="">
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="ThemeOverlay.Hotels.Card" parent="">
+        <item name="colorSurface">@color/white</item>
+    </style>
+</resources>

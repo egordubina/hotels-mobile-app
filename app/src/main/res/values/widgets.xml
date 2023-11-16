@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Hotels.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.Hotels.Toolbar.Title</item>
+        <item name="titleCentered">true</item>
+    </style>
+
+    <style name="Widget.Hotels.Button" parent="Widget.Material3.Button">
+        <item name="android:textAppearance">@style/TextAppearance.Hotels.Button.Text</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Hotel.Button</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.Button</item>
+    </style>
+
+    <style name="Widget.Hotels.LinearProgressIndicator" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.LinearProgressInndicator</item>
+        <item name="trackColor">@color/white</item>
+    </style>
+
+    <style name="Widget.Hotels.Card" parent="">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.Card</item>
+    </style>
+</resources>
