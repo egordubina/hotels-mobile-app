@@ -87,11 +87,12 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/button__select_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/medium_indent"
             android:layout_marginVertical="@dimen/medium_indent"
-            android:text="Выбрать номер" />
+            android:text="@string/select_room" />
 
     </LinearLayout>
 

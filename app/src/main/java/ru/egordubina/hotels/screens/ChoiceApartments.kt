@@ -33,6 +33,8 @@ class ChoiceApartments : Fragment(R.layout.fragment__choice_of_apartments) {
         super.onCreate(savedInstanceState)
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 vm.uiState.collect { uiState ->
@@ -42,7 +44,9 @@ class ChoiceApartments : Fragment(R.layout.fragment__choice_of_apartments) {
                     when (uiState) {
                         is ApartmentsScreenUiState.Content -> {
                             binding.apply {
-                                rvApartments.adapter = ApartmentsAdapter(uiState.apartments)
+                                rvApartments.adapter = ApartmentsAdapter(uiState.apartments) {
+                                    findNavController().navigate(R.id.action_choiceApartments_to_successPay)
+                                }
                                 rvApartments.addItemDecoration(ApartmentAdapterItemDecoration(bottom = 8))
                             }
                         }

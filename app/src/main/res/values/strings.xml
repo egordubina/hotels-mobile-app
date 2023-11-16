@@ -7,4 +7,5 @@
     <string name="label__cool">Супер!</string>
     <string name="price_from">от %s</string>
     <string name="price">%s ₽</string>
+    <string name="select_room">Выбрать номер</string>
 </resources>
