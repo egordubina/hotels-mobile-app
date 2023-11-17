@@ -17,7 +17,7 @@
     <fragment
         tools:layout="@layout/fragment__success_pay"
         android:id="@+id/successPay"
-        android:name="ru.egordubina.hotels.screens.SuccessPay"
+        android:name="ru.egordubina.hotels.screens.SuccessPayScreen"
         android:label="SuccessPay" >
         <action
             android:id="@+id/action_successPay_to_hotelScreen"
@@ -28,14 +28,23 @@
     <fragment
         tools:layout="@layout/fragment__choice_of_apartments"
         android:id="@+id/choiceApartments"
-        android:name="ru.egordubina.hotels.screens.ChoiceApartments"
+        android:name="ru.egordubina.hotels.screens.ChoiceApartmentsScreen"
         android:label="ChoiceApartments" >
-        <action
-            android:id="@+id/action_choiceApartments_to_successPay"
-            app:destination="@id/successPay" />
         <argument
             android:name="hotel_name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_choiceApartments_to_bookingScreen"
+            app:destination="@id/bookingScreen" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment__booking"
+        android:id="@+id/bookingScreen"
+        android:name="ru.egordubina.hotels.screens.BookingScreen"
+        android:label="BookingScreen" >
+        <action
+            android:id="@+id/action_bookingScreen_to_successPay"
+            app:destination="@id/successPay" />
     </fragment>
 
 </navigation>

@@ -27,11 +27,11 @@ import ru.egordubina.hotels.utils.toPx
 import ru.egordubina.hotels.viewmodels.ApartmentsScreenViewModel
 
 @AndroidEntryPoint
-class ChoiceApartments : Fragment(R.layout.fragment__choice_of_apartments) {
+class ChoiceApartmentsScreen : Fragment(R.layout.fragment__choice_of_apartments) {
     private var _binding: FragmentChoiceOfApartmentsBinding? = null
     private val binding get() = checkNotNull(_binding)
     private val vm: ApartmentsScreenViewModel by viewModels()
-    private val args: ChoiceApartmentsArgs by navArgs()
+    private val args: ChoiceApartmentsScreenArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class ChoiceApartments : Fragment(R.layout.fragment__choice_of_apartments) {
                 setChips = {
                     it.map { chipText -> addChipToPeculiarities(requireContext(), chipText) }
                 },
-                onButtonClick = { findNavController().navigate(R.id.action_choiceApartments_to_successPay) }
+                onButtonClick = { findNavController().navigate(R.id.action_choiceApartments_to_bookingScreen) }
             )
             rvApartments.addItemDecoration(
                 ApartmentAdapterItemDecoration(bottom = requireContext().toPx(8).toInt())

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -26,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button__to_hotel_screen"
+        android:layout_above="@id/card__button_to_hotel"
         android:layout_below="@id/app_bar_layout"
         android:gravity="center"
         android:orientation="vertical">
@@ -64,14 +65,29 @@
             tools:text="Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление." />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button__to_hotel_screen"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card__button_to_hotel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/medium_indent"
-        android:text="@string/label__cool" />
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="0dp"
+        app:strokeWidth="0dp">
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerColor="#FFE8E9EC" />
+
+        <Button
+            android:id="@+id/button__to_hotel_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium_indent"
+            android:text="@string/label__cool" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>
