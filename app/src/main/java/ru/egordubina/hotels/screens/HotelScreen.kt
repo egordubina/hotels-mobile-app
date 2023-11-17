@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -91,6 +92,16 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                     HotelScreenDirections.actionHotelScreenToChoiceApartments(hotelName = uiState.name)
                 findNavController().navigate(action)
             }
+            cardButtonHotel.viewTreeObserver.addOnPreDrawListener(
+                object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        cardButtonHotel.viewTreeObserver.removeOnPreDrawListener(this)
+                        val height = cardButtonHotel.height
+                        nestedScrollView.setPadding(0, 0, 0, height)
+                        return true
+                    }
+                }
+            )
         }
     }
 }
