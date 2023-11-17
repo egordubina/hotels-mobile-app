@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/medium_indent"
     android:scaleType="centerCrop"
-    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:shapeAppearance="@style/ShapeAppearance.Hotel.Image.Corner"
     tools:src="@tools:sample/backgrounds/scenic">
 
 </com.google.android.material.imageview.ShapeableImageView>

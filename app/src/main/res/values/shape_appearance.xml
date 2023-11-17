@@ -4,4 +4,9 @@
         <item name="cornerSize">@dimen/medium_corner_size</item>
         <item name="cornerFamily">rounded</item>
     </style>
+
+    <style name="ShapeAppearance.Hotel.Image.Corner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>
