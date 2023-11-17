@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:itemCount="3"
+        tools:itemCount="2"
         tools:listitem="@layout/item__apartment" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
