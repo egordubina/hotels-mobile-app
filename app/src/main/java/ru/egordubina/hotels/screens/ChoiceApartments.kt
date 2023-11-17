@@ -18,8 +18,10 @@ import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
 import ru.egordubina.hotels.adapters.ApartmentAdapterItemDecoration
 import ru.egordubina.hotels.adapters.ApartmentsAdapter
+import ru.egordubina.hotels.adapters.ImageSliderAdapter
 import ru.egordubina.hotels.databinding.FragmentChoiceOfApartmentsBinding
 import ru.egordubina.hotels.uistates.ApartmentsScreenUiState
+import ru.egordubina.hotels.utils.addChipToPeculiarities
 import ru.egordubina.hotels.viewmodels.ApartmentsScreenViewModel
 
 @AndroidEntryPoint
@@ -44,9 +46,15 @@ class ChoiceApartments : Fragment(R.layout.fragment__choice_of_apartments) {
                     when (uiState) {
                         is ApartmentsScreenUiState.Content -> {
                             binding.apply {
-                                rvApartments.adapter = ApartmentsAdapter(uiState.apartments) {
-                                    findNavController().navigate(R.id.action_choiceApartments_to_successPay)
-                                }
+                                rvApartments.adapter = ApartmentsAdapter(
+                                    apartmentsItems = uiState.apartments,
+                                    setImagesSliderAdapter = { urls -> ImageSliderAdapter(urls) },
+                                    setChips = {
+                                        it.map { chipText ->
+                                            addChipToPeculiarities(requireContext(), chipText)
+                                        }
+                                    }
+                                ) { findNavController().navigate(R.id.action_choiceApartments_to_successPay) }
                                 rvApartments.addItemDecoration(ApartmentAdapterItemDecoration(bottom = 8))
                             }
                         }
