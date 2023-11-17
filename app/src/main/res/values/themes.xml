@@ -4,6 +4,7 @@
         <item name="linearProgressIndicatorStyle">@style/Widget.Hotels.LinearProgressIndicator</item>
         <item name="toolbarStyle">@style/Widget.Hotels.Toolbar</item>
         <item name="materialCardViewStyle">@style/Widget.Hotels.Card</item>
+        <item name="colorSurface">@color/white</item>
 
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>

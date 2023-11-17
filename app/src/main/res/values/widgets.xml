@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Hotels.Toolbar" parent="Widget.Material3.Toolbar">
+    <style name="Widget.Hotels.Toolbar" parent="Widget.Material3.Toolbar.Surface">
         <item name="titleTextAppearance">@style/TextAppearance.Hotels.Toolbar.Title</item>
         <item name="titleCentered">true</item>
     </style>
