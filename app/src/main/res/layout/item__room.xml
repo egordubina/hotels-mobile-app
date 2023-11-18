@@ -12,10 +12,10 @@
         android:orientation="vertical">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:layout_marginTop="@dimen/medium_indent"
             android:id="@+id/view_pager__apartment_images_slider"
             android:layout_width="match_parent"
-            android:layout_height="257dp" />
+            android:layout_height="257dp"
+            android:layout_marginTop="@dimen/medium_indent" />
 
         <TextView
             android:id="@+id/item__apartment_name"
@@ -32,25 +32,23 @@
             tools:text="Стандартный с видом на бассейн или сад" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.Hotels.Chip.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/medium_indent"
             android:layout_marginTop="@dimen/small_indent"
             android:text="@string/more_about_room"
-            android:textColor="@color/blue"
-            app:chipBackgroundColor="@color/blue10"
             app:chipStrokeWidth="0dp"
             app:closeIcon="@drawable/arrow_forward"
             app:closeIconTint="@color/blue"
-            app:closeIconVisible="true"
-            app:ensureMinTouchTargetSize="false" />
+            app:closeIconVisible="true" />
 
         <com.google.android.material.chip.ChipGroup
-            android:layout_marginHorizontal="@dimen/medium_indent"
-            android:layout_marginTop="@dimen/small_indent"
             android:id="@+id/chip_group__peculiarities"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_indent"
+            android:layout_marginTop="@dimen/small_indent" />
 
         <LinearLayout
             android:layout_width="match_parent"

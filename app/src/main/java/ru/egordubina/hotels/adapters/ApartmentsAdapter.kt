@@ -31,7 +31,7 @@ class ApartmentsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item__apartment, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item__room, parent, false)
         )
 
     override fun getItemCount(): Int = apartmentsItems.size

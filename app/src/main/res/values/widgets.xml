@@ -22,7 +22,6 @@
     </style>
 
     <style name="Widget.Hotels.Chip" parent="Widget.Material3.Chip.Assist">
-        <item name="android:enabled">false</item>
         <item name="chipCornerRadius">5dp</item>
         <item name="chipEndPadding">10dp</item>
         <item name="chipStartPadding">10dp</item>
@@ -31,6 +30,7 @@
     </style>
 
     <style name="Widget.Hotels.Chip.Rating">
+        <item name="android:enabled">false</item>
         <item name="android:textColor">@color/ratingChipColor</item>
         <item name="chipBackgroundColor">@color/ratingChipColorBackground</item>
         <item name="chipIcon">@drawable/icon__star</item>
@@ -40,6 +40,11 @@
     <style name="Widget.Hotels.Chip.Default">
         <item name="android:textColor">@color/defaultChipColor</item>
         <item name="chipBackgroundColor">@color/defaultChipColorBackground</item>
+    </style>
+
+    <style name="Widget.Hotels.Chip.Button">
+        <item name="android:textColor">@color/blue</item>
+        <item name="chipBackgroundColor">@color/blue10</item>
     </style>
 
     <style name="Widget.Hotels.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
