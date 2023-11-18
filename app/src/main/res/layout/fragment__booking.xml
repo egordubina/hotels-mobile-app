@@ -40,6 +40,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="@dimen/small_indent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
@@ -119,6 +120,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/tetxt_view__from"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -146,6 +148,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/tetxt_view__to"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -173,6 +176,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/tetxt_view__number_of_night"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -200,6 +204,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/text_view__hotel_title_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -227,6 +232,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/tetxt_view__room_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -254,6 +260,7 @@
                             android:textColor="#FF828796" />
 
                         <TextView
+                            android:id="@+id/tetxt_view__eat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -332,12 +339,115 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card__price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_indent"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:padding="@dimen/medium_indent"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="0.4"
+                            android:layout_width="match_parent"
+                            android:text="Тур"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="textEnd"
+                            android:id="@+id/text_view__tour_price"
+                            android:layout_weight="0.6"
+                            tools:text="186 000 ₽"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="0.4"
+                            android:layout_width="match_parent"
+                            android:text="Топливный сбор"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="textEnd"
+                            android:id="@+id/text_view__fuel_price"
+                            android:layout_weight="0.6"
+                            tools:text="186 000 ₽"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="0.4"
+                            android:layout_width="match_parent"
+                            android:text="Сервисный сбор"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="textEnd"
+                            android:id="@+id/text_view__service_price"
+                            android:layout_weight="0.6"
+                            tools:text="186 000 ₽"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="0.4"
+                            android:layout_width="match_parent"
+                            android:text="К оплате"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/blue"
+                            android:textAlignment="textEnd"
+                            android:id="@+id/text_view__all_price"
+                            android:layout_weight="0.6"
+                            tools:text="186 000 ₽"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card__button_hotel"
+        android:id="@+id/card__button_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -353,14 +463,14 @@
             app:dividerColor="#FFE8E9EC" />
 
         <Button
-            android:id="@+id/button__to_choice_number"
+            android:id="@+id/button__to_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/medium_indent"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="@dimen/medium_indent"
             android:backgroundTint="#FF0D72FF"
-            android:text="@string/label__to_choice_apartments"
+            tools:text="@string/label__to_pay"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

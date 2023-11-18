@@ -72,10 +72,13 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
         binding.apply {
             textViewHotelTitle.text = uiState.name
             buttonHotelAddress.text = uiState.address
-            textViewPrice.text =
-                requireContext().getString(R.string.price_from, uiState.price.toRubInt())
+            textViewPrice.text = getString(R.string.price_from, uiState.price.toRubInt())
             textViewPriceLabel.text = uiState.priceLabel
-            chipRating.text = "${uiState.rating} ${uiState.ratingName}"
+            chipRating.text = getString(
+                R.string.сhip_rating_text,
+                uiState.rating,
+                uiState.ratingName
+            )
             textViewHotelDescription.text = uiState.hotelDescription
             viewPagerImagesSlider.adapter = ImageSliderAdapter(uiState.imagesUrls)
             chipGroupPeculiarities.removeAllViews()

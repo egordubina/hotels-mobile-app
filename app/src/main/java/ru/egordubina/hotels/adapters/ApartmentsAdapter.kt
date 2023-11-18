@@ -24,8 +24,7 @@ class ApartmentsAdapter(
         val name: TextView = itemView.findViewById(R.id.item__apartment_name)
         val price: TextView = itemView.findViewById(R.id.item__apartment_price)
         val pricePer: TextView = itemView.findViewById(R.id.item__apartment_price_per)
-        val imagesSlider: ViewPager2 =
-            itemView.findViewById(R.id.view_pager__apartment_images_slider)
+        val imagesSlider: ViewPager2 = itemView.findViewById(R.id.view_pager__apartment_images_slider)
         val chipGroup: ChipGroup = itemView.findViewById(R.id.chip_group__peculiarities)
         val buttonSelectRoom: Button = itemView.findViewById(R.id.button__select_room)
     }

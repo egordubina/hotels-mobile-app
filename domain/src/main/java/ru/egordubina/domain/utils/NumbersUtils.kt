@@ -2,6 +2,7 @@ package ru.egordubina.domain.utils
 
 /**
  * Возвращает строку, приведённую к формату стоиости с валютным знаком
+ * @return Строка с разделенным числом через пробел и знак рубля
  * */
 fun Int.toRubInt(): String {
     val result = StringBuilder()

@@ -67,7 +67,7 @@ class ChoiceApartmentsScreen : Fragment(R.layout.fragment__choice_of_apartments)
                 onButtonClick = { findNavController().navigate(R.id.action_choiceApartments_to_bookingScreen) }
             )
             rvApartments.addItemDecoration(
-                ApartmentAdapterItemDecoration(bottom = requireContext().toPx(8).toInt())
+                ApartmentAdapterItemDecoration(top = requireContext().toPx(8).toInt())
             )
         }
     }
