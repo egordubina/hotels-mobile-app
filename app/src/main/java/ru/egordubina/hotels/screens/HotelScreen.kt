@@ -88,15 +88,15 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                 )
             }
             buttonToChoiceNumber.setOnClickListener {
-                val action =
-                    HotelScreenDirections.actionHotelScreenToChoiceApartments(hotelName = uiState.name)
+                val action = HotelScreenDirections
+                    .actionHotelScreenToChoiceApartments(hotelName = uiState.name)
                 findNavController().navigate(action)
             }
             cardButtonHotel.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
                         cardButtonHotel.viewTreeObserver.removeOnPreDrawListener(this)
-                        val height = cardButtonHotel.height
+                        val height = cardButtonHotel.height + 12
                         nestedScrollView.setPadding(0, 0, 0, height)
                         return true
                     }

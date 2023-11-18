@@ -18,6 +18,6 @@ fun addChipToPeculiarities(context: Context, feature: String): Chip {
     )
     chip.setTextColor(Color.parseColor("#FF828796"))
     chip.chipStrokeWidth = 0f
-    chip.setBackgroundColor(Color.parseColor("#FFFBFBFC"))
+//    chip.styl = context.resources.getColor(R.color.blue, context.theme)
     return chip
 }

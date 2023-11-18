@@ -21,22 +21,31 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.Hotels.Card</item>
     </style>
 
-    <style name="Widget.Hotels.Chip.Rating" parent="Widget.Material3.Chip.Assist">
+    <style name="Widget.Hotels.Chip" parent="Widget.Material3.Chip.Assist">
         <item name="android:enabled">false</item>
-        <item name="android:textColor">@color/chipColor</item>
-        <item name="chipBackgroundColor">@color/chipColor20</item>
         <item name="chipCornerRadius">5dp</item>
         <item name="chipEndPadding">10dp</item>
-        <item name="chipIcon">@drawable/icon__star</item>
-        <item name="chipIconTint">@color/chipColor</item>
         <item name="chipStartPadding">10dp</item>
         <item name="chipStrokeWidth">0dp</item>
         <item name="ensureMinTouchTargetSize">false</item>
     </style>
 
-    <style name="Widget.hotels.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+    <style name="Widget.Hotels.Chip.Rating">
+        <item name="android:textColor">@color/ratingChipColor</item>
+        <item name="chipBackgroundColor">@color/ratingChipColorBackground</item>
+        <item name="chipIcon">@drawable/icon__star</item>
+        <item name="chipIconTint">@color/ratingChipColor</item>
+    </style>
+
+    <style name="Widget.Hotels.Chip.Default">
+        <item name="android:textColor">@color/defaultChipColor</item>
+        <item name="chipBackgroundColor">@color/defaultChipColorBackground</item>
+    </style>
+
+    <style name="Widget.Hotels.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">#FFF6F6F9</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Hotel.EditText.Corner</item>
     </style>
+
 </resources>

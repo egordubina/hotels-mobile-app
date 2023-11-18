@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFF6F6F9">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -295,10 +296,10 @@
                         android:hint="Номер телефона">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:inputType="phone"
-                            android:maxLines="1"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:inputType="phone"
+                            android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -309,10 +310,10 @@
                         android:hint="Почта">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:maxLines="1"
-                            android:inputType="textEmailAddress"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -336,14 +337,14 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.card.MaterialCardView
-        app:layout_anchor="@id/nestedScrollView"
-        app:layout_anchorGravity="bottom"
         android:id="@+id/card__button_hotel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginTop="12dp"
         app:cardCornerRadius="0dp"
+        app:layout_anchor="@id/nestedScrollView"
+        app:layout_anchorGravity="bottom"
         app:strokeWidth="0dp">
 
         <com.google.android.material.divider.MaterialDivider

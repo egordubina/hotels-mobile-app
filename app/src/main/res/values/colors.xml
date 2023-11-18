@@ -4,6 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0D72FF</color>
     <color name="blue10">#1A0D72FF</color>
-    <color name="chipColor">#FFFFA800</color>
-    <color name="chipColor20">#33FFC700</color>
+    <color name="ratingChipColor">#FFFFA800</color>
+    <color name="ratingChipColorBackground">#33FFC700</color>
+    <color name="defaultChipColor">#FF828796</color>
+    <color name="defaultChipColorBackground">#FFFBFBFC</color>
 </resources>
