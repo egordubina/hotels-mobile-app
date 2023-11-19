@@ -225,7 +225,6 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                                         isVisible = false
                                     )
                                 },
-                                isError = hasError,
                                 changeError = { hasError = true }
                             )
                         }
@@ -474,7 +473,6 @@ fun AppEditText(
 fun ButtonAddTourist(
     touristSize: Int,
     onClick: () -> Unit,
-    isError: Boolean,
     changeError: () -> Unit
 ) {
     Card(
@@ -498,10 +496,8 @@ fun ButtonAddTourist(
             )
             FilledIconButton(
                 onClick = {
-                    if (!isError) {
-                        onClick()
-                        changeError()
-                    }
+                    onClick()
+                    changeError()
                 },
                 colors = IconButtonDefaults.filledIconButtonColors(
                     containerColor = colorResource(id = R.color.blue)
@@ -523,6 +519,6 @@ fun ButtonAddTourist(
 @Composable
 fun ButtonAddTouristPreview() {
     MaterialTheme {
-        ButtonAddTourist(0, {}, false) {}
+        ButtonAddTourist(0, {}) {}
     }
 }
