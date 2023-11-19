@@ -1,7 +1,8 @@
 package ru.egordubina.hotels.models
 
 data class TouristUi(
-    val isVisible: Boolean = true,
+    val id: Int,
+    val isVisible: Boolean = false,
     val name: String = "",
     val surname: String = "",
     val birthday: String = "",

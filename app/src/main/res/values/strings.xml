@@ -41,4 +41,15 @@
     <string name="hint_tourist_pas_date">Срок действия загранпаспорта</string>
     <string name="pay_error">Ошибка оплаты</string>
     <string name="add_tourist_title">Добавить туриста</string>
+    <string name="tourist">Турист</string>
+    <string name="first_tourist">Первый турист</string>
+    <string name="second_tourist">Второй турист</string>
+    <string name="third_tourist">Третий турист</string>
+    <string name="fourth_tourist">Четвёртый турист</string>
+    <string name="fifth_tourist">Пятый турист</string>
+    <string name="sixth_tourist">Шестой турист</string>
+    <string name="seventh_tourist">Седьмой турист</string>
+    <string name="eighth_tourist">Восьмой турист</string>
+    <string name="nineth_tourist">Девятый турист</string>
+    <string name="tenth_tourist">Десятый турист</string>
 </resources>

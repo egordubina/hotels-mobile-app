@@ -48,7 +48,7 @@
     </style>
 
     <style name="Widget.Hotels.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxBackgroundColor">#FFF6F6F9</item>
+        <item name="boxBackgroundColor">@color/gray</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="shapeAppearance">@style/ShapeAppearance.Hotel.EditText.Corner</item>
     </style>

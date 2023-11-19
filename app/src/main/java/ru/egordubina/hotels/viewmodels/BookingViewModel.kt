@@ -78,7 +78,7 @@ class BookingViewModel @Inject constructor(
     fun addTourist() {
         viewModelScope.launch {
             val updatedTouristMap = (_uiState.value as BookingScreenUiState.Content).touristsList.toMutableList()
-            updatedTouristMap.add(TouristUi())
+            updatedTouristMap.add(TouristUi(Random.nextInt(0, 1000)))
             _uiState.update {
                 (it as BookingScreenUiState.Content).copy(touristsList = updatedTouristMap)
             }

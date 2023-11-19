@@ -8,4 +8,5 @@
     <color name="ratingChipColorBackground">#33FFC700</color>
     <color name="defaultChipColor">#FF828796</color>
     <color name="defaultChipColorBackground">#FFFBFBFC</color>
+    <color name="gray">#FFF6F6F9</color>
 </resources>
