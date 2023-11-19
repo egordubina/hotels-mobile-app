@@ -1,6 +1,7 @@
 package ru.egordubina.hotels.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.egordubina.domain.utils.toRubInt
 import ru.egordubina.hotels.R
 import ru.egordubina.hotels.databinding.FragmentBookingBinding
 import ru.egordubina.hotels.uistates.BookingScreenUiState
@@ -29,10 +30,23 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        findNavController().addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.bookingScreen)
+                vm.resetUiState()
+        }
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 vm.uiState.collect { uiState ->
-                    binding.loadingIndicator.isVisible = uiState == BookingScreenUiState.Loading
+                    binding.apply {
+                        loadingIndicator.isVisible =
+                            uiState == BookingScreenUiState.Loading || uiState == BookingScreenUiState.LoadingPay
+                        nestedScrollView.isVisible =
+                            !(uiState == BookingScreenUiState.Loading || uiState == BookingScreenUiState.Error)
+                    }
                     when (uiState) {
                         is BookingScreenUiState.Content -> {
                             binding.apply {
@@ -50,28 +64,28 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                                 textViewHotelTitle2.text = uiState.hotelName
                                 tetxtViewRoomName.text = uiState.roomName
                                 tetxtViewEat.text = uiState.nutrition
-                                textViewTourPrice.text = uiState.tourPrice.toRubInt()
-                                textViewFuelPrice.text = uiState.fuelCharge.toRubInt()
-                                textViewServicePrice.text = uiState.serviceCharge.toRubInt()
-                                // fixme: перенести логику в юзкейс
-                                textViewAllPrice.text = (uiState.tourPrice + uiState.fuelCharge + uiState.serviceCharge).toRubInt()
-                                buttonToPay.text = getString(R.string.label__to_pay, (uiState.tourPrice + uiState.fuelCharge + uiState.serviceCharge).toRubInt())
-                                buttonToPay.setOnClickListener { findNavController().navigate(R.id.action_bookingScreen_to_successPay) }
-                                cardButtonPay.viewTreeObserver.addOnPreDrawListener(
-                                    object : ViewTreeObserver.OnPreDrawListener {
-                                        override fun onPreDraw(): Boolean {
-                                            cardButtonPay.viewTreeObserver.removeOnPreDrawListener(this)
-                                            val height = cardButtonPay.height + 12
-                                            nestedScrollView.setPadding(0, 0, 0, height)
-                                            return true
-                                        }
-                                    }
-                                )
+                                textViewTourPrice.text = uiState.tourPrice
+                                textViewFuelPrice.text = uiState.fuelCharge
+                                textViewServicePrice.text = uiState.serviceCharge
+                                textViewAllPrice.text = uiState.totalPrice
+                                buttonToPay.text =
+                                    getString(R.string.label__to_pay, uiState.totalPrice)
+                                buttonToPay.setOnClickListener { vm.bookingPay() }
                             }
                         }
 
                         BookingScreenUiState.Error -> {}
                         BookingScreenUiState.Loading -> {}
+                        is BookingScreenUiState.SuccessfulPay -> {
+                            val action = BookingScreenDirections.actionBookingScreenToSuccessPay(
+                                bookingNumber = uiState.bookingNumber
+                            )
+                            findNavController().navigate(action)
+                        }
+
+                        BookingScreenUiState.UnsuccessfulPay -> {}
+                        BookingScreenUiState.LoadingPay -> {}
+                        BookingScreenUiState.Reload -> { }
                     }
                 }
             }

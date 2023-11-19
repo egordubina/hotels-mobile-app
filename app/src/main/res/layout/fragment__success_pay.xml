@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -58,11 +57,12 @@
             android:layout_marginHorizontal="23dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/text_view__success_pay_message"
             android:textAlignment="center"
             android:textColor="#FF828796"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление." />
+            app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView

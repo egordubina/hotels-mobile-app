@@ -2,10 +2,10 @@ package ru.egordubina.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import ru.egordubina.domain.models.Apartment as DomainApartment
+import ru.egordubina.domain.models.RoomsDomain as DomainApartment
 
 @Serializable
-data class Apartment(
+data class RoomData(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String,
     @SerialName("price") val price: Int,
@@ -14,7 +14,7 @@ data class Apartment(
     @SerialName("image_urls") val imagesUrls: List<String>,
 )
 
-fun Apartment.asDomain(): DomainApartment = DomainApartment(
+fun RoomData.asDomain(): DomainApartment = DomainApartment(
     id = this.id,
     name = this.name,
     price = this.price,
@@ -23,4 +23,4 @@ fun Apartment.asDomain(): DomainApartment = DomainApartment(
     imagesUrls = this.imagesUrls
 )
 
-fun List<Apartment>.asDomain(): List<DomainApartment> = map { it.asDomain() }
+fun List<RoomData>.asDomain(): List<DomainApartment> = map { it.asDomain() }

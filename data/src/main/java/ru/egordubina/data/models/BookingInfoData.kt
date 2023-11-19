@@ -2,10 +2,10 @@ package ru.egordubina.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import ru.egordubina.domain.models.BookingInfo as BookingInfoDomain
+import ru.egordubina.domain.models.BookingInfoDomain as BookingInfoDomain
 
 @Serializable
-data class BookingInfo(
+data class BookingInfoData(
     @SerialName("id") val id: Int,
     @SerialName("hotel_name") val hotelName: String,
     @SerialName("hotel_adress") val hotelAddress: String,
@@ -23,7 +23,7 @@ data class BookingInfo(
     @SerialName("service_charge") val serviceCharge: Int,
 )
 
-fun BookingInfo.asDomain(): BookingInfoDomain = BookingInfoDomain(
+fun BookingInfoData.asDomain(): BookingInfoDomain = BookingInfoDomain(
     id = this.id,
     hotelName = this.hotelName,
     hotelAddress = this.hotelAddress,

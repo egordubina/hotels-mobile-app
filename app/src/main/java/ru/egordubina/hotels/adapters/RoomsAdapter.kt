@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import ru.egordubina.domain.models.Apartment
 import ru.egordubina.domain.utils.toRubInt
 import ru.egordubina.hotels.R
+import ru.egordubina.hotels.models.RoomUi
 
-class ApartmentsAdapter(
-    private val apartmentsItems: List<Apartment>,
+class RoomsAdapter(
+    private val apartmentsItems: List<RoomUi>,
     private val setImagesSliderAdapter: (List<String>) -> ImageSliderAdapter,
     private val setChips: (List<String>) -> List<Chip>,
     private val onButtonClick: () -> Unit,
-) : RecyclerView.Adapter<ApartmentsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RoomsAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // todo: переписать на binding
         val name: TextView = itemView.findViewById(R.id.item__apartment_name)

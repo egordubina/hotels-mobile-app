@@ -120,7 +120,7 @@
                         android:includeFontPadding="false"
                         android:maxLines="1"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/small_text_size"
                         app:layout_constraintStart_toStartOf="@id/start_padding"
                         app:layout_constraintTop_toBottomOf="@id/text_view__hotel_title"
                         tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
@@ -147,7 +147,7 @@
                         android:fontFamily="@font/sf_pro_display_regular"
                         android:includeFontPadding="false"
                         android:textColor="#FF828796"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size"
                         app:layout_constraintBaseline_toBaselineOf="@id/text_view__price"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/end_padding"
@@ -202,7 +202,7 @@
                         android:includeFontPadding="false"
                         android:maxLines="5"
                         android:textColor="#E6000000"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/text_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/chip_group__peculiarities"
@@ -252,7 +252,7 @@
                                         android:fontFamily="@font/sf_pro_display_medium"
                                         android:includeFontPadding="false"
                                         android:text="Удобства"
-                                        android:textSize="16sp" />
+                                        android:textSize="@dimen/text_size" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -261,7 +261,7 @@
                                         android:includeFontPadding="false"
                                         android:text="Самое необходимое"
                                         android:textColor="#FF828796"
-                                        android:textSize="14sp" />
+                                        android:textSize="@dimen/small_text_size" />
 
                                 </LinearLayout>
 
@@ -307,7 +307,7 @@
                                         android:fontFamily="@font/sf_pro_display_medium"
                                         android:includeFontPadding="false"
                                         android:text="Что включено"
-                                        android:textSize="16sp" />
+                                        android:textSize="@dimen/text_size" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -316,7 +316,7 @@
                                         android:includeFontPadding="false"
                                         android:text="Самое необходимое"
                                         android:textColor="#FF828796"
-                                        android:textSize="14sp" />
+                                        android:textSize="@dimen/small_text_size" />
 
                                 </LinearLayout>
 
@@ -362,7 +362,7 @@
                                         android:fontFamily="@font/sf_pro_display_medium"
                                         android:includeFontPadding="false"
                                         android:text="Что не включено"
-                                        android:textSize="16sp" />
+                                        android:textSize="@dimen/text_size" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -371,7 +371,7 @@
                                         android:includeFontPadding="false"
                                         android:text="Самое необходимое"
                                         android:textColor="#FF828796"
-                                        android:textSize="14sp" />
+                                        android:textSize="@dimen/small_text_size" />
 
                                 </LinearLayout>
 
@@ -418,7 +418,7 @@
             android:layout_marginBottom="@dimen/medium_indent"
             android:backgroundTint="#FF0D72FF"
             android:text="@string/label__to_choice_apartments"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

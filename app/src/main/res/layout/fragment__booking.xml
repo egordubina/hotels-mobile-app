@@ -31,7 +31,6 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -40,9 +39,9 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_marginTop="@dimen/small_indent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_indent"
                 app:cardCornerRadius="12dp"
                 app:strokeWidth="0dp">
 
@@ -85,7 +84,7 @@
                         android:includeFontPadding="false"
                         android:maxLines="1"
                         android:textColor="@color/blue"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/small_text_size"
                         tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
                 </LinearLayout>
@@ -116,7 +115,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Вылет из"
+                            android:text="@string/label_from_city"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -144,7 +143,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Страна, город"
+                            android:text="@string/label_country_city"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -172,7 +171,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Кол-во ночей"
+                            android:text="@string/label_numbers_of_night"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -200,7 +199,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Отель"
+                            android:text="@string/label_hotel"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -228,7 +227,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Номер"
+                            android:text="@string/label_room"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -256,7 +255,7 @@
                             android:layout_weight="0.6"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:includeFontPadding="false"
-                            android:text="Питание"
+                            android:text="@string/label_eat"
                             android:textColor="#FF828796" />
 
                         <TextView
@@ -293,14 +292,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:text="Информация о покупателе"
+                        android:text="@string/label_information_about_person"
                         android:textAppearance="@style/TextAppearance.Hotels.Title" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/medium_indent"
-                        android:hint="Номер телефона">
+                        android:hint="@string/label_phone_number">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -314,7 +313,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/small_indent"
-                        android:hint="Почта">
+                        android:hint="@string/label_email">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -331,9 +330,9 @@
                         android:layout_marginBottom="@dimen/medium_indent"
                         android:fontFamily="@font/sf_pro_display_regular"
                         android:includeFontPadding="false"
-                        android:text="Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту"
+                        android:text="@string/label_legal"
                         android:textColor="#FF828796"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/small_text_size" />
 
                 </LinearLayout>
 
@@ -348,93 +347,120 @@
                 app:strokeWidth="0dp">
 
                 <LinearLayout
-                    android:padding="@dimen/medium_indent"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/medium_indent">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_weight="0.4"
                             android:layout_width="match_parent"
-                            android:text="Тур"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_tour"
+                            android:textSize="@dimen/text_size" />
 
                         <TextView
-                            android:textAlignment="textEnd"
                             android:id="@+id/text_view__tour_price"
-                            android:layout_weight="0.6"
-                            tools:text="186 000 ₽"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:includeFontPadding="false"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_size"
+                            tools:text="186 000 ₽" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_indent"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_weight="0.4"
                             android:layout_width="match_parent"
-                            android:text="Топливный сбор"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_fuel_price"
+                            android:textSize="@dimen/text_size" />
 
                         <TextView
-                            android:textAlignment="textEnd"
                             android:id="@+id/text_view__fuel_price"
-                            android:layout_weight="0.6"
-                            tools:text="186 000 ₽"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:includeFontPadding="false"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_size"
+                            tools:text="186 000 ₽" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_indent"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_weight="0.4"
                             android:layout_width="match_parent"
-                            android:text="Сервисный сбор"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_service_price"
+                            android:textSize="@dimen/text_size" />
 
                         <TextView
-                            android:textAlignment="textEnd"
                             android:id="@+id/text_view__service_price"
-                            android:layout_weight="0.6"
-                            tools:text="186 000 ₽"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:includeFontPadding="false"
+                            android:textAlignment="textEnd"
+                            android:textSize="@dimen/text_size"
+                            tools:text="186 000 ₽" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_indent"
+                        android:orientation="horizontal">
 
                         <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="0.4"
-                            android:layout_width="match_parent"
-                            android:text="К оплате"
-                            android:layout_height="wrap_content" />
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_all_price"
+                            android:textSize="@dimen/text_size" />
 
                         <TextView
-                            android:textColor="@color/blue"
-                            android:textAlignment="textEnd"
                             android:id="@+id/text_view__all_price"
-                            android:layout_weight="0.6"
-                            tools:text="186 000 ₽"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:includeFontPadding="false"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/text_size"
+                            tools:text="186 000 ₽" />
 
                     </LinearLayout>
 
@@ -442,41 +468,38 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card__button_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="0dp"
+                app:strokeWidth="0dp">
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerColor="#FFE8E9EC" />
+
+                <Button
+                    android:id="@+id/button__to_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/medium_indent"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="@dimen/medium_indent"
+                    android:backgroundTint="#FF0D72FF"
+                    android:textSize="@dimen/text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view__hotel_description"
+                    tools:text="@string/label__to_pay" />
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card__button_pay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="0dp"
-        app:layout_anchor="@id/nestedScrollView"
-        app:layout_anchorGravity="bottom"
-        app:strokeWidth="0dp">
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:dividerColor="#FFE8E9EC" />
-
-        <Button
-            android:id="@+id/button__to_pay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/medium_indent"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="@dimen/medium_indent"
-            android:backgroundTint="#FF0D72FF"
-            tools:text="@string/label__to_pay"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view__hotel_description" />
-
-    </com.google.android.material.card.MaterialCardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class ApartmentsApiAnswer(
-    @SerialName("rooms") val rooms: List<Apartment>
+data class RoomsApiAnswerData(
+    @SerialName("rooms") val rooms: List<RoomData>
 )

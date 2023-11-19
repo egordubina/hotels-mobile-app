@@ -24,11 +24,14 @@
             app:destination="@id/hotelScreen"
             app:popUpTo="@id/hotelScreen"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="booking_number"
+            app:argType="integer" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment__choice_of_apartments"
         android:id="@+id/choiceApartments"
-        android:name="ru.egordubina.hotels.screens.ChoiceApartmentsScreen"
+        android:name="ru.egordubina.hotels.screens.ChoiceRoomScreen"
         android:label="ChoiceApartments" >
         <argument
             android:name="hotel_name"

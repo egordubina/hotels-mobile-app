@@ -15,4 +15,19 @@
     <string name="numbers_of_night_plural_1">%d ночи</string>
     <string name="numbers_of_night_plural_2">%d ночей</string>
     <string name="label__to_pay">Оплатить %s</string>
+    <string name="label_room">Номер</string>
+    <string name="label_eat">Питание</string>
+    <string name="label_hotel">Отель</string>
+    <string name="label_numbers_of_night">Кол-во ночей</string>
+    <string name="label_country_city">Страна, город</string>
+    <string name="label_from_city">Вылет из</string>
+    <string name="label_information_about_person">Информация о покупателе</string>
+    <string name="label_phone_number">Номер телефона</string>
+    <string name="label_email">Почта</string>
+    <string name="label_legal">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="label_tour">Тур</string>
+    <string name="label_fuel_price">Топливный сбор</string>
+    <string name="label_service_price">Сервисный сбор</string>
+    <string name="label_all_price">К оплате</string>
+    <string name="text_view__success_pay_message">Подтверждение заказа №%d может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
 </resources>

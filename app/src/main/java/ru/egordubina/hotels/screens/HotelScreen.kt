@@ -33,6 +33,8 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
         super.onCreate(savedInstanceState)
         exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
         reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 vm.uiState.collect { uiState ->

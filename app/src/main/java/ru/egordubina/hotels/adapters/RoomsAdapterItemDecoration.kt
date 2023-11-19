@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ApartmentAdapterItemDecoration(
+class RoomsAdapterItemDecoration(
     private val left: Int = 0,
     private val top: Int = 0,
     private val right: Int = 0,

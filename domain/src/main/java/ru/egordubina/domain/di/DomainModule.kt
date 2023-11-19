@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import ru.egordubina.domain.repositories.ApartmentsRepository
+import ru.egordubina.domain.repositories.RoomsRepository
 import ru.egordubina.domain.repositories.BookingRepository
 import ru.egordubina.domain.repositories.HotelRepository
 import ru.egordubina.domain.usecases.LoadApartmentsUseCase
@@ -22,8 +22,8 @@ class DomainModule {
         LoadHotelUseCaseImpl(hotelRepository = hotelRepository)
 
     @Provides
-    fun loadApartmentsUseCaseProvides(apartmentsRepository: ApartmentsRepository): LoadApartmentsUseCase =
-        LoadApartmentsUseCaseImpl(apartmentsRepository = apartmentsRepository)
+    fun loadApartmentsUseCaseProvides(roomsRepository: RoomsRepository): LoadApartmentsUseCase =
+        LoadApartmentsUseCaseImpl(roomsRepository = roomsRepository)
 
     @Provides
     fun loadBookingInfoUseCaseProvider(bookingRepository: BookingRepository): LoadBookingInfoUseCase =

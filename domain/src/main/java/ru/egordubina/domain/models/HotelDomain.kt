@@ -1,6 +1,6 @@
 package ru.egordubina.domain.models
 
-data class Hotel(
+data class HotelDomain(
     val id: Int,
     val name: String,
     val address: String,
@@ -9,5 +9,5 @@ data class Hotel(
     val rating: Int,
     val ratingName: String,
     val imagesUrls: List<String>,
-    val aboutHotel: InfoAboutHotel,
+    val aboutHotel: InfoAboutHotelDomain,
 )

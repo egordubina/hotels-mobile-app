@@ -10,26 +10,27 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.egordubina.domain.usecases.LoadApartmentsUseCase
-import ru.egordubina.hotels.uistates.ApartmentsScreenUiState
+import ru.egordubina.hotels.models.asUi
+import ru.egordubina.hotels.uistates.RoomsScreenUiState
 import javax.inject.Inject
 
 @HiltViewModel
-class ApartmentsScreenViewModel @Inject constructor(
+class RoomsScreenViewModel @Inject constructor(
     private val loadApartmentsUseCase: LoadApartmentsUseCase
 ): ViewModel() {
-    private val _uiState: MutableStateFlow<ApartmentsScreenUiState> = MutableStateFlow(ApartmentsScreenUiState.Loading)
-    val uiState: StateFlow<ApartmentsScreenUiState> = _uiState.asStateFlow()
+    private val _uiState: MutableStateFlow<RoomsScreenUiState> = MutableStateFlow(RoomsScreenUiState.Loading)
+    val uiState: StateFlow<RoomsScreenUiState> = _uiState.asStateFlow()
     private var job: Job? = null
 
     init {
+        _uiState.value = RoomsScreenUiState.Loading
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
-            _uiState.value = ApartmentsScreenUiState.Loading
             try {
-                val response = loadApartmentsUseCase.loadApartments()
-                _uiState.value = ApartmentsScreenUiState.Content(apartments = response)
+                val response = loadApartmentsUseCase.loadRooms().asUi()
+                _uiState.value = RoomsScreenUiState.Content(apartments = response)
             } catch (e: Exception) {
-                _uiState.value = ApartmentsScreenUiState.Error
+                _uiState.value = RoomsScreenUiState.Error
             }
         }
     }

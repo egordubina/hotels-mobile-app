@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.egordubina.domain.usecases.LoadHotelUseCase
+import ru.egordubina.hotels.models.asUi
 import ru.egordubina.hotels.uistates.HotelScreenUiState
 import javax.inject.Inject
 
@@ -24,11 +25,11 @@ class HotelScreenViewModel @Inject constructor(
     private var job: Job? = null
 
     init {
+        _uiState.value = HotelScreenUiState.Loading
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
-            _uiState.value = HotelScreenUiState.Loading
             try {
-                val result = loadHotelUseCase.loadHotel()
+                val result = loadHotelUseCase.loadHotel().asUi()
                 _uiState.value = HotelScreenUiState.Content(
                     name = result.name,
                     address = result.address,

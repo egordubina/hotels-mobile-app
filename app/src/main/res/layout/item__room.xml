@@ -80,7 +80,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:textColor="#FF828796"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size"
                 tools:text="за 7 ночей с перелётом" />
 
         </LinearLayout>

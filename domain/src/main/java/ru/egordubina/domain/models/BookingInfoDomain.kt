@@ -1,6 +1,6 @@
 package ru.egordubina.domain.models
 
-data class BookingInfo(
+data class BookingInfoDomain(
     val id: Int,
     val hotelName: String,
     val hotelAddress: String,
