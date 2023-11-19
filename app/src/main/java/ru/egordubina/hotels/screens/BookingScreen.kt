@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledIconButton
@@ -37,10 +38,14 @@ import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -55,6 +60,7 @@ import ru.egordubina.hotels.R
 import ru.egordubina.hotels.databinding.FragmentBookingBinding
 import ru.egordubina.hotels.models.TouristUi
 import ru.egordubina.hotels.uistates.BookingScreenUiState
+import ru.egordubina.hotels.utils.PhoneNumberMask
 import ru.egordubina.hotels.utils.getStringNumberOfNights
 import ru.egordubina.hotels.viewmodels.BookingViewModel
 
@@ -140,6 +146,7 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
     }
 
     private fun showContent(uiState: BookingScreenUiState.Content) {
+        var hasError = true
         binding.apply {
             chipRating.text = getString(
                 R.string.сhip_rating_text,
@@ -161,7 +168,40 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
             textViewAllPrice.text = uiState.totalPrice
             buttonToPay.text =
                 getString(R.string.label__to_pay, uiState.totalPrice)
-            buttonToPay.setOnClickListener { vm.bookingPay() }
+            buttonToPay.setOnClickListener {
+                if (!hasError)
+                    vm.bookingPay()
+                else
+                    Snackbar.make(requireView(), "Заполните все поля", Snackbar.LENGTH_SHORT).show()
+            }
+            editTextEmail.doAfterTextChanged {
+                if (!checkMail(editTextEmail.text.toString())) {
+                    editLayoutEmail.error = "Введите корректный адрес почты"
+                    editLayoutEmail.boxBackgroundColor =
+                        resources.getColor(R.color.errorBackground, requireContext().theme)
+                    hasError = true
+                } else {
+                    editLayoutEmail.error = null
+                    editLayoutEmail.boxBackgroundColor =
+                        resources.getColor(R.color.gray, requireContext().theme)
+                    hasError = false
+                }
+            }
+            editTextPhoneNumber.addTextChangedListener(PhoneNumberMask(editTextPhoneNumber))
+            editTextPhoneNumber.doAfterTextChanged {
+                if (checkPhoneNumber(editTextPhoneNumber.text.toString())) {
+                    editLayoutPhoneNumber.error =
+                        "Введите корректный номер телефона"
+                    editLayoutPhoneNumber.boxBackgroundColor =
+                        resources.getColor(R.color.errorBackground, requireContext().theme)
+                    hasError = true
+                } else {
+                    editLayoutPhoneNumber.error = null
+                    editLayoutPhoneNumber.boxBackgroundColor =
+                        resources.getColor(R.color.gray, requireContext().theme)
+                    hasError = false
+                }
+            }
             composeList.apply {
                 setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
                 setContent {
@@ -175,7 +215,8 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                             }
                             ButtonAddTourist(touristsList.size) {
                                 touristsList = touristsList + TouristUi(
-                                    id = touristsList.size, isVisible = touristsList.isEmpty()
+                                    id = touristsList.size,
+                                    isVisible = touristsList.isEmpty()
                                 )
                             }
                         }
@@ -184,6 +225,11 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
             }
         }
     }
+
+    private fun checkMail(email: String): Boolean =
+        email.matches("""\w*@\w*.\w{2,4}""".toRegex())
+
+    private fun checkPhoneNumber(phone: String): Boolean = phone.length != 18
 
     private fun showError() {
         Snackbar.make(
@@ -214,33 +260,7 @@ fun TouristCard(id: Int, expanded: Boolean) {
             .padding(top = dimensionResource(id = R.dimen.small_indent))
             .animateContentSize()
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.medium_indent))
-        ) {
-            Text(
-                text = cardName,
-                fontFamily = FontFamily(Font(R.font.sf_pro_display_medium)),
-                fontSize = 22.sp,
-                style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(.1f)
-            )
-            IconButton(onClick = { expand = !expand }) {
-                Icon(
-                    painter = if (expand)
-                        painterResource(id = R.drawable.show_less)
-                    else
-                        painterResource(id = R.drawable.show_more),
-                    contentDescription = null,
-                    modifier = Modifier.weight(1f)
-                )
-            }
-        }
+        TouristCardTitle(cardName = cardName, isExpand = expand) { expand = it }
         if (expand)
             Column(
                 verticalArrangement = Arrangement.spacedBy(
@@ -252,32 +272,97 @@ fun TouristCard(id: Int, expanded: Boolean) {
             ) {
                 AppEditText(
                     value = name,
-                    hintText = stringResource(id = R.string.hint_tourist_name)
+                    hintText = stringResource(id = R.string.hint_tourist_name),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 ) {
                     name = it
                     cardName = if (it.isNotEmpty()) "$touristNumber ($it)" else touristNumber
                 }
                 AppEditText(
                     value = surname,
-                    hintText = stringResource(id = R.string.hint_tourist_surname)
+                    hintText = stringResource(id = R.string.hint_tourist_surname),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 ) { surname = it }
                 AppEditText(
                     value = birthday,
-                    hintText = stringResource(id = R.string.hint_tourist_birthday)
+                    hintText = stringResource(id = R.string.hint_tourist_birthday),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    )
                 ) { birthday = it }
                 AppEditText(
                     value = country,
-                    hintText = stringResource(id = R.string.hint_tourist_country)
+                    hintText = stringResource(id = R.string.hint_tourist_country),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 ) { country = it }
                 AppEditText(
                     value = pasNumber,
-                    hintText = stringResource(id = R.string.hint_tourist_pas_number)
+                    hintText = stringResource(id = R.string.hint_tourist_pas_number),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    )
                 ) { pasNumber = it }
                 AppEditText(
                     value = pasDate,
-                    hintText = stringResource(id = R.string.hint_tourist_pas_date)
+                    hintText = stringResource(id = R.string.hint_tourist_pas_date),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Done
+                    )
                 ) { pasDate = it }
             }
+    }
+}
+
+@Composable
+fun TouristCardTitle(
+    cardName: String,
+    isExpand: Boolean,
+    onClickButton: (Boolean) -> Unit
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(dimensionResource(id = R.dimen.medium_indent))
+    ) {
+        Text(
+            text = cardName,
+            fontFamily = FontFamily(Font(R.font.sf_pro_display_medium)),
+            fontSize = 22.sp,
+            style = TextStyle(platformStyle = PlatformTextStyle(includeFontPadding = false)),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(.1f),
+        )
+        IconButton(onClick = { onClickButton(!isExpand) }) {
+            Icon(
+                painter = if (isExpand)
+                    painterResource(id = R.drawable.show_less)
+                else
+                    painterResource(id = R.drawable.show_more),
+                contentDescription = null,
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
 
@@ -302,6 +387,7 @@ fun getTouristNumber(id: Int): String {
 fun AppEditText(
     value: String,
     hintText: String,
+    keyboardOptions: KeyboardOptions,
     onChangeValue: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -309,15 +395,22 @@ fun AppEditText(
         singleLine = true,
         value = value,
         onValueChange = { onChangeValue(it) },
-        placeholder = { Text(text = hintText) },
         modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = colorResource(id = R.color.gray),
             unfocusedIndicatorColor = colorResource(id = R.color.gray),
-            focusedContainerColor = colorResource(id = R.color.blue10),
+            focusedContainerColor = colorResource(id = R.color.gray),
             focusedIndicatorColor = colorResource(id = R.color.blue),
+            focusedTextColor = colorResource(id = R.color.black),
+            unfocusedTextColor = colorResource(id = R.color.black),
+            focusedLabelColor = colorResource(id = R.color.blue),
+            unfocusedLabelColor = colorResource(id = R.color.black),
+            cursorColor = colorResource(id = R.color.blue)
         ),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.medium_corner_size)),
+        textStyle = TextStyle(fontFamily = FontFamily(Font(R.font.sf_pro_display_regular))),
+        label = { Text(text = hintText) },
+        keyboardOptions = keyboardOptions,
+        shape = RoundedCornerShape(dimensionResource(id = R.dimen.pre_medium_corner_size)),
     )
 }
 

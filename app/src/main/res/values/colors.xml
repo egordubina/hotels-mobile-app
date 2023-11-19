@@ -9,4 +9,6 @@
     <color name="defaultChipColor">#FF828796</color>
     <color name="defaultChipColorBackground">#FFFBFBFC</color>
     <color name="gray">#FFF6F6F9</color>
+    <color name="errorText">#EB5757</color>
+    <color name="errorBackground">#26EB5757</color>
 </resources>

@@ -17,6 +17,6 @@
 
     <style name="ShapeAppearance.Hotel.EditText.Corner" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">10dp</item>
+        <item name="cornerSize">@dimen/pre_medium_corner_size</item>
     </style>
 </resources>
