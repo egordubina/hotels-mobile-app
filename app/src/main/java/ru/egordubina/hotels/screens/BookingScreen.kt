@@ -1,6 +1,7 @@
 package ru.egordubina.hotels.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -169,7 +170,10 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
             buttonToPay.text =
                 getString(R.string.label__to_pay, uiState.totalPrice)
             buttonToPay.setOnClickListener {
-                if (!hasError)
+                if (!hasError && checkMail(editTextEmail.text.toString()) && checkPhoneNumber(
+                        editTextPhoneNumber.text.toString()
+                    )
+                )
                     vm.bookingPay()
                 else
                     Snackbar.make(requireView(), "Заполните все поля", Snackbar.LENGTH_SHORT).show()
@@ -179,46 +183,51 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                     editLayoutEmail.error = "Введите корректный адрес почты"
                     editLayoutEmail.boxBackgroundColor =
                         resources.getColor(R.color.errorBackground, requireContext().theme)
-                    hasError = true
                 } else {
                     editLayoutEmail.error = null
                     editLayoutEmail.boxBackgroundColor =
                         resources.getColor(R.color.gray, requireContext().theme)
-                    hasError = false
                 }
             }
             editTextPhoneNumber.addTextChangedListener(PhoneNumberMask(editTextPhoneNumber))
             editTextPhoneNumber.doAfterTextChanged {
-                if (checkPhoneNumber(editTextPhoneNumber.text.toString())) {
+                if (!checkPhoneNumber(editTextPhoneNumber.text.toString())) {
                     editLayoutPhoneNumber.error =
                         "Введите корректный номер телефона"
                     editLayoutPhoneNumber.boxBackgroundColor =
                         resources.getColor(R.color.errorBackground, requireContext().theme)
-                    hasError = true
                 } else {
                     editLayoutPhoneNumber.error = null
                     editLayoutPhoneNumber.boxBackgroundColor =
                         resources.getColor(R.color.gray, requireContext().theme)
-                    hasError = false
                 }
             }
             composeList.apply {
                 setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
                 setContent {
                     MaterialTheme {
-                        var touristsList by remember { mutableStateOf(listOf<TouristUi>()) }
+                        var touristsList by remember {
+                            mutableStateOf(
+                                listOf(TouristUi(id = 0, isVisible = true))
+                            )
+                        }
                         Column(
                             modifier = Modifier.animateContentSize()
                         ) {
                             touristsList.forEach {
-                                TouristCard(id = it.id, expanded = it.isVisible)
+                                TouristCard(id = it.id, expanded = it.isVisible) { hasError = it }
                             }
-                            ButtonAddTourist(touristsList.size) {
-                                touristsList = touristsList + TouristUi(
-                                    id = touristsList.size,
-                                    isVisible = touristsList.isEmpty()
-                                )
-                            }
+                            ButtonAddTourist(
+                                touristsList.size,
+                                onClick = {
+                                    touristsList = touristsList + TouristUi(
+                                        id = touristsList.size,
+                                        isVisible = false
+                                    )
+                                },
+                                isError = hasError,
+                                changeError = { hasError = true }
+                            )
                         }
                     }
                 }
@@ -226,10 +235,15 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
         }
     }
 
-    private fun checkMail(email: String): Boolean =
-        email.matches("""\w*@\w*.\w{2,4}""".toRegex())
+    private fun checkMail(email: String): Boolean {
+        Log.e("BUG mail", email.matches("""\w*@\w*.\w{2,4}""".toRegex()).toString())
+        return email.matches("""\w*@\w*.\w{2,4}""".toRegex())
+    }
 
-    private fun checkPhoneNumber(phone: String): Boolean = phone.length != 18
+    private fun checkPhoneNumber(phone: String): Boolean {
+        Log.e("BUG phone", (phone.length != 18).toString())
+        return phone.length == 18
+    }
 
     private fun showError() {
         Snackbar.make(
@@ -241,7 +255,7 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
 }
 
 @Composable
-fun TouristCard(id: Int, expanded: Boolean) {
+fun TouristCard(id: Int, expanded: Boolean, changeError: (Boolean) -> Unit) {
     var name by remember { mutableStateOf("") }
     var surname by remember { mutableStateOf("") }
     var country by remember { mutableStateOf("") }
@@ -251,6 +265,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
     var expand by remember { mutableStateOf(expanded) }
     val touristNumber = getTouristNumber(id = id + 1)
     var cardName by remember { mutableStateOf(touristNumber) }
+    var isError by remember { mutableStateOf(true) }
+    Log.e("ERROR", isError.toString())
+    if (isError)
+        changeError(true)
+    else
+        changeError(false)
+
     Card(
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.medium_corner_size)),
         colors = CardDefaults.cardColors(
@@ -277,10 +298,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Next
-                    )
+                    ),
+                    isError = name.isEmpty()
                 ) {
                     name = it
                     cardName = if (it.isNotEmpty()) "$touristNumber ($it)" else touristNumber
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
                 }
                 AppEditText(
                     value = surname,
@@ -289,8 +313,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Next
-                    )
-                ) { surname = it }
+                    ),
+                    isError = surname.isEmpty()
+                ) {
+                    surname = it
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
+                }
                 AppEditText(
                     value = birthday,
                     hintText = stringResource(id = R.string.hint_tourist_birthday),
@@ -298,8 +327,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
-                    )
-                ) { birthday = it }
+                    ),
+                    isError = birthday.length != 10
+                ) {
+                    birthday = it
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
+                }
                 AppEditText(
                     value = country,
                     hintText = stringResource(id = R.string.hint_tourist_country),
@@ -307,8 +341,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Next
-                    )
-                ) { country = it }
+                    ),
+                    isError = country.isEmpty()
+                ) {
+                    country = it
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
+                }
                 AppEditText(
                     value = pasNumber,
                     hintText = stringResource(id = R.string.hint_tourist_pas_number),
@@ -316,8 +355,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
-                    )
-                ) { pasNumber = it }
+                    ),
+                    isError = pasNumber.length != 9
+                ) {
+                    pasNumber = it
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
+                }
                 AppEditText(
                     value = pasDate,
                     hintText = stringResource(id = R.string.hint_tourist_pas_date),
@@ -325,8 +369,13 @@ fun TouristCard(id: Int, expanded: Boolean) {
                         capitalization = KeyboardCapitalization.Words,
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
-                    )
-                ) { pasDate = it }
+                    ),
+                    isError = pasDate.length != 10
+                ) {
+                    pasDate = it
+                    isError = name.isEmpty() || surname.isEmpty() || country.isEmpty() ||
+                            birthday.length != 10 || pasDate.length != 10 || pasNumber.length != 9
+                }
             }
     }
 }
@@ -388,6 +437,7 @@ fun AppEditText(
     value: String,
     hintText: String,
     keyboardOptions: KeyboardOptions,
+    isError: Boolean,
     onChangeValue: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -405,8 +455,14 @@ fun AppEditText(
             unfocusedTextColor = colorResource(id = R.color.black),
             focusedLabelColor = colorResource(id = R.color.blue),
             unfocusedLabelColor = colorResource(id = R.color.black),
-            cursorColor = colorResource(id = R.color.blue)
+            cursorColor = colorResource(id = R.color.blue),
+            errorContainerColor = colorResource(id = R.color.errorBackground),
+            errorTextColor = colorResource(id = R.color.errorText),
+            errorLabelColor = colorResource(id = R.color.errorText),
+            errorIndicatorColor = colorResource(id = R.color.errorText),
+            errorCursorColor = colorResource(id = R.color.errorText),
         ),
+        isError = isError,
         textStyle = TextStyle(fontFamily = FontFamily(Font(R.font.sf_pro_display_regular))),
         label = { Text(text = hintText) },
         keyboardOptions = keyboardOptions,
@@ -415,7 +471,12 @@ fun AppEditText(
 }
 
 @Composable
-fun ButtonAddTourist(touristSize: Int, onClick: () -> Unit) {
+fun ButtonAddTourist(
+    touristSize: Int,
+    onClick: () -> Unit,
+    isError: Boolean,
+    changeError: () -> Unit
+) {
     Card(
         colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.white)),
         modifier = Modifier.padding(top = dimensionResource(id = R.dimen.small_indent))
@@ -436,7 +497,12 @@ fun ButtonAddTourist(touristSize: Int, onClick: () -> Unit) {
                 )
             )
             FilledIconButton(
-                onClick = onClick,
+                onClick = {
+                    if (!isError) {
+                        onClick()
+                        changeError()
+                    }
+                },
                 colors = IconButtonDefaults.filledIconButtonColors(
                     containerColor = colorResource(id = R.color.blue)
                 ),
@@ -457,6 +523,6 @@ fun ButtonAddTourist(touristSize: Int, onClick: () -> Unit) {
 @Composable
 fun ButtonAddTouristPreview() {
     MaterialTheme {
-        ButtonAddTourist(0) {}
+        ButtonAddTourist(0, {}, false) {}
     }
 }
