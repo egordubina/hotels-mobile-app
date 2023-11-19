@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,17 +19,19 @@ import kotlin.random.Random
 @HiltViewModel
 class BookingViewModel @Inject constructor(
     private val loadBookingInfoUseCase: LoadBookingInfoUseCase
-) : ViewModel() {
-    private var _uiState: MutableStateFlow<BookingScreenUiState> = MutableStateFlow(BookingScreenUiState.Loading)
-    val uiState: StateFlow<BookingScreenUiState> = _uiState.asStateFlow()
-    private val _prevUiState: MutableStateFlow<BookingScreenUiState> = MutableStateFlow(BookingScreenUiState.Loading)
+) : ViewModel(), IViewModel<BookingScreenUiState> {
+    private var _uiState: MutableStateFlow<BookingScreenUiState> =
+        MutableStateFlow(BookingScreenUiState.Loading)
+    override val uiState: StateFlow<BookingScreenUiState> = _uiState.asStateFlow()
+    private val _prevUiState: MutableStateFlow<BookingScreenUiState> =
+        MutableStateFlow(BookingScreenUiState.Loading)
     private var job: Job? = null
 
     init {
         loadData()
     }
 
-    private fun loadData() {
+    override fun loadData() {
         _uiState.update { BookingScreenUiState.Loading }
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
@@ -62,10 +63,6 @@ class BookingViewModel @Inject constructor(
         }
     }
 
-    fun resetUiState() {
-        _uiState.update { _prevUiState.value }
-    }
-
     fun bookingPay() {
         _uiState.update { BookingScreenUiState.LoadingPay }
         job?.cancel()
@@ -75,8 +72,6 @@ class BookingViewModel @Inject constructor(
                 _uiState.update {
                     BookingScreenUiState.SuccessfulPay(bookingNumber = randomBookingNumber)
                 }
-                delay(250)
-                _uiState.update { BookingScreenUiState.Reload }
             } catch (e: Exception) {
                 _uiState.update { BookingScreenUiState.UnsuccessfulPay }
             }

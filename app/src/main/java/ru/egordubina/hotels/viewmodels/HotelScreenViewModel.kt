@@ -18,13 +18,17 @@ import javax.inject.Inject
 @HiltViewModel
 class HotelScreenViewModel @Inject constructor(
     private val loadHotelUseCase: LoadHotelUseCase
-) : ViewModel() {
+) : ViewModel(), IViewModel<HotelScreenUiState> {
     private var _uiState: MutableStateFlow<HotelScreenUiState> =
         MutableStateFlow(HotelScreenUiState.Loading)
-    val uiState: StateFlow<HotelScreenUiState> = _uiState.asStateFlow()
+    override val uiState: StateFlow<HotelScreenUiState> = _uiState.asStateFlow()
     private var job: Job? = null
 
     init {
+        loadData()
+    }
+
+    override fun loadData() {
         _uiState.value = HotelScreenUiState.Loading
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {

@@ -27,479 +27,486 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_indent"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/medium_indent"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip__rating"
-                        style="@style/Widget.Hotels.Chip.Rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="@id/start_padding"
-                        app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider"
-                        tools:text="5 Превосходно" />
-
-                    <TextView
-                        android:id="@+id/text_view__hotel_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:ellipsize="end"
-                        android:includeFontPadding="false"
-                        android:maxLines="2"
-                        android:textAppearance="@style/TextAppearance.Hotels.Title"
-                        tools:text="Steigenberger Makadi" />
-
-                    <TextView
-                        android:id="@+id/button__hotel_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:ellipsize="end"
-                        android:focusable="true"
-                        android:fontFamily="@font/sf_pro_display_medium"
-                        android:includeFontPadding="false"
-                        android:maxLines="1"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/small_text_size"
-                        tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_indent"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/medium_indent"
-                    android:orientation="vertical">
+                    android:layout_marginTop="@dimen/small_indent"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_margin="@dimen/medium_indent"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip__rating"
+                            style="@style/Widget.Hotels.Chip.Rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="@id/start_padding"
+                            app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider"
+                            tools:text="5 Превосходно" />
 
                         <TextView
+                            android:id="@+id/text_view__hotel_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:ellipsize="end"
                             android:includeFontPadding="false"
-                            android:text="@string/label_from_city"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/tetxt_view__from"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
-                            tools:text="Москва" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_country_city"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/tetxt_view__to"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
-                            tools:text="Египет, Хургада" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_numbers_of_night"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/tetxt_view__number_of_night"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
-                            tools:text="7 ночей" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_hotel"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/text_view__hotel_title_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
+                            android:maxLines="2"
+                            android:textAppearance="@style/TextAppearance.Hotels.Title"
                             tools:text="Steigenberger Makadi" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/button__hotel_address"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:focusable="true"
+                            android:fontFamily="@font/sf_pro_display_medium"
                             android:includeFontPadding="false"
-                            android:text="@string/label_room"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/tetxt_view__room_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
-                            tools:text="Стандартный с видом на бассейн или сад" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_eat"
-                            android:textColor="#FF828796" />
-
-                        <TextView
-                            android:id="@+id/tetxt_view__eat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/black"
-                            tools:text="Все включено" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_indent"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/medium_indent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="@string/label_information_about_person"
-                        android:textAppearance="@style/TextAppearance.Hotels.Title" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:hint="@string/label_phone_number">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="phone"
-                            android:maxLines="1" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:hint="@string/label_email">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="textEmailAddress"
-                            android:maxLines="1" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:layout_marginBottom="@dimen/medium_indent"
-                        android:fontFamily="@font/sf_pro_display_regular"
-                        android:includeFontPadding="false"
-                        android:text="@string/label_legal"
-                        android:textColor="#FF828796"
-                        android:textSize="@dimen/small_text_size" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card__price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_indent"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/medium_indent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_tour"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/text_view__tour_price"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_semibold"
-                            android:includeFontPadding="false"
-                            android:textAlignment="textEnd"
-                            android:textSize="@dimen/text_size"
-                            tools:text="186 000 ₽" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_fuel_price"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/text_view__fuel_price"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_semibold"
-                            android:includeFontPadding="false"
-                            android:textAlignment="textEnd"
-                            android:textSize="@dimen/text_size"
-                            tools:text="186 000 ₽" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_service_price"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/text_view__service_price"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_semibold"
-                            android:includeFontPadding="false"
-                            android:textAlignment="textEnd"
-                            android:textSize="@dimen/text_size"
-                            tools:text="186 000 ₽" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/label_all_price"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/text_view__all_price"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:fontFamily="@font/sf_pro_display_semibold"
-                            android:includeFontPadding="false"
-                            android:textAlignment="textEnd"
+                            android:maxLines="1"
                             android:textColor="@color/blue"
-                            android:textSize="@dimen/text_size"
-                            tools:text="186 000 ₽" />
+                            android:textSize="@dimen/small_text_size"
+                            tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card__button_pay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:cardCornerRadius="0dp"
-                app:strokeWidth="0dp">
-
-                <com.google.android.material.divider.MaterialDivider
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:dividerColor="#FFE8E9EC" />
+                    android:layout_marginTop="@dimen/small_indent"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
 
-                <Button
-                    android:id="@+id/button__to_pay"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/medium_indent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_from_city"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/tetxt_view__from"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="Москва" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_country_city"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/tetxt_view__to"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="Египет, Хургада" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_numbers_of_night"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/tetxt_view__number_of_night"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="7 ночей" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_hotel"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/text_view__hotel_title_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="Steigenberger Makadi" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_room"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/tetxt_view__room_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="Стандартный с видом на бассейн или сад" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_eat"
+                                android:textColor="#FF828796" />
+
+                            <TextView
+                                android:id="@+id/tetxt_view__eat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/black"
+                                tools:text="Все включено" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/medium_indent"
+                    android:layout_marginTop="@dimen/small_indent"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/medium_indent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_information_about_person"
+                            android:textAppearance="@style/TextAppearance.Hotels.Title" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:hint="@string/label_phone_number">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="phone"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:hint="@string/label_email">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:layout_marginBottom="@dimen/medium_indent"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/label_legal"
+                            android:textColor="#FF828796"
+                            android:textSize="@dimen/small_text_size" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card__price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_indent"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/medium_indent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_tour"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/text_view__tour_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_semibold"
+                                android:includeFontPadding="false"
+                                android:textAlignment="textEnd"
+                                android:textSize="@dimen/text_size"
+                                tools:text="186 000 ₽" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_fuel_price"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/text_view__fuel_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_semibold"
+                                android:includeFontPadding="false"
+                                android:textAlignment="textEnd"
+                                android:textSize="@dimen/text_size"
+                                tools:text="186 000 ₽" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_service_price"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/text_view__service_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_semibold"
+                                android:includeFontPadding="false"
+                                android:textAlignment="textEnd"
+                                android:textSize="@dimen/text_size"
+                                tools:text="186 000 ₽" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/label_all_price"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/text_view__all_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:fontFamily="@font/sf_pro_display_semibold"
+                                android:includeFontPadding="false"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/text_size"
+                                tools:text="186 000 ₽" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card__button_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:layout_marginBottom="@dimen/medium_indent"
-                    android:backgroundTint="#FF0D72FF"
-                    android:textSize="@dimen/text_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view__hotel_description"
-                    tools:text="@string/label__to_pay" />
+                    app:cardCornerRadius="0dp"
+                    app:strokeWidth="0dp">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:dividerColor="#FFE8E9EC" />
 
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/button__to_pay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/medium_indent"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="@dimen/medium_indent"
+                        android:backgroundTint="#FF0D72FF"
+                        android:textSize="@dimen/text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view__hotel_description"
+                        tools:text="@string/label__to_pay" />
 
-    </androidx.core.widget.NestedScrollView>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

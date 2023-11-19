@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="#FFF6F6F9"
+    android:fillViewport="true"
     android:scrollbars="none">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,11 +14,11 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            app:layout_collapseMode="pin"
-            app:layout_scrollFlags="scroll|enterAlways"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/label__hotel" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -29,379 +29,386 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card__top_info_hotel"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <!--  TODO: ViewPager для картинок  -->
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/start_padding"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_begin="@dimen/medium_indent" />
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/end_padding"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_end="@dimen/medium_indent" />
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/bottom_padding"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_end="@dimen/medium_indent" />
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager__images_slider"
-                        android:layout_width="0dp"
-                        android:layout_height="257dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!--  TODO: заменить на ресурсы весь файл  -->
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip__rating"
-                        style="@style/Widget.Hotels.Chip.Rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        app:layout_constraintStart_toStartOf="@id/start_padding"
-                        app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider"
-                        tools:text="5 Превосходно" />
-
-                    <TextView
-                        android:id="@+id/text_view__hotel_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:ellipsize="end"
-                        android:includeFontPadding="false"
-                        android:maxLines="2"
-                        android:textAppearance="@style/TextAppearance.Hotels.Title"
-                        app:layout_constraintEnd_toEndOf="@id/end_padding"
-                        app:layout_constraintStart_toStartOf="@id/start_padding"
-                        app:layout_constraintTop_toBottomOf="@id/chip__rating"
-                        tools:text="Steigenberger Makadi" />
-
-                    <TextView
-                        android:id="@+id/button__hotel_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_indent"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:ellipsize="end"
-                        android:focusable="true"
-                        android:fontFamily="@font/sf_pro_display_medium"
-                        android:includeFontPadding="false"
-                        android:maxLines="1"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/small_text_size"
-                        app:layout_constraintStart_toStartOf="@id/start_padding"
-                        app:layout_constraintTop_toBottomOf="@id/text_view__hotel_title"
-                        tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
-
-                    <TextView
-                        android:id="@+id/text_view__price"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        android:fontFamily="@font/sf_pro_display_semibold"
-                        android:includeFontPadding="false"
-                        android:textColor="@color/black"
-                        android:textSize="30sp"
-                        app:layout_constraintBottom_toBottomOf="@id/bottom_padding"
-                        app:layout_constraintStart_toStartOf="@id/start_padding"
-                        app:layout_constraintTop_toBottomOf="@id/button__hotel_address"
-                        tools:text="от 134 673 ₽" />
-
-                    <TextView
-                        android:id="@+id/text_view__price_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/small_indent"
-                        android:fontFamily="@font/sf_pro_display_regular"
-                        android:includeFontPadding="false"
-                        android:textColor="#FF828796"
-                        android:textSize="@dimen/text_size"
-                        app:layout_constraintBaseline_toBaselineOf="@id/text_view__price"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/end_padding"
-                        app:layout_constraintStart_toEndOf="@id/text_view__price"
-                        tools:text="за тур с перелётом" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card__bottom_info_hotel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_indent"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card__top_info_hotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/medium_indent">
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
 
-                    <TextView
-                        android:id="@+id/text_view__about_hotel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="@string/label__about_hotel"
-                        android:textAppearance="@style/TextAppearance.Hotels.Title"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--  TODO: ViewPager для картинок  -->
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chip_group__peculiarities"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        app:chipSpacing="@dimen/small_indent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view__about_hotel" />
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/start_padding"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="@dimen/medium_indent" />
 
-                    <TextView
-                        android:id="@+id/text_view__hotel_description"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/sf_pro_display_regular"
-                        android:includeFontPadding="false"
-                        android:maxLines="5"
-                        android:textColor="#E6000000"
-                        android:textSize="@dimen/text_size"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/chip_group__peculiarities"
-                        tools:text="@tools:sample/lorem/random" />
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/end_padding"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="@dimen/medium_indent" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/medium_indent"
-                        app:cardBackgroundColor="#FBFBFC"
-                        app:cardCornerRadius="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_view__hotel_description">
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/bottom_padding"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_end="@dimen/medium_indent" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager__images_slider"
+                            android:layout_width="0dp"
+                            android:layout_height="257dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!--  TODO: заменить на ресурсы весь файл  -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip__rating"
+                            style="@style/Widget.Hotels.Chip.Rating"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginTop="@dimen/medium_indent"
+                            app:layout_constraintStart_toStartOf="@id/start_padding"
+                            app:layout_constraintTop_toBottomOf="@id/view_pager__images_slider"
+                            tools:text="5 Превосходно" />
 
-                            <!-- Перввый пункт "Удобства" -->
+                        <TextView
+                            android:id="@+id/text_view__hotel_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:ellipsize="end"
+                            android:includeFontPadding="false"
+                            android:maxLines="2"
+                            android:textAppearance="@style/TextAppearance.Hotels.Title"
+                            app:layout_constraintEnd_toEndOf="@id/end_padding"
+                            app:layout_constraintStart_toStartOf="@id/start_padding"
+                            app:layout_constraintTop_toBottomOf="@id/chip__rating"
+                            tools:text="Steigenberger Makadi" />
+
+                        <TextView
+                            android:id="@+id/button__hotel_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_indent"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:focusable="true"
+                            android:fontFamily="@font/sf_pro_display_medium"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/small_text_size"
+                            app:layout_constraintStart_toStartOf="@id/start_padding"
+                            app:layout_constraintTop_toBottomOf="@id/text_view__hotel_title"
+                            tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет" />
+
+                        <TextView
+                            android:id="@+id/text_view__price"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            android:fontFamily="@font/sf_pro_display_semibold"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            app:layout_constraintBottom_toBottomOf="@id/bottom_padding"
+                            app:layout_constraintStart_toStartOf="@id/start_padding"
+                            app:layout_constraintTop_toBottomOf="@id/button__hotel_address"
+                            tools:text="от 134 673 ₽" />
+
+                        <TextView
+                            android:id="@+id/text_view__price_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/small_indent"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:textColor="#FF828796"
+                            android:textSize="@dimen/text_size"
+                            app:layout_constraintBaseline_toBaselineOf="@id/text_view__price"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/end_padding"
+                            app:layout_constraintStart_toEndOf="@id/text_view__price"
+                            tools:text="за тур с перелётом" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card__bottom_info_hotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_indent"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/medium_indent">
+
+                        <TextView
+                            android:id="@+id/text_view__about_hotel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="@string/label__about_hotel"
+                            android:textAppearance="@style/TextAppearance.Hotels.Title"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chip_group__peculiarities"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            app:chipSpacing="@dimen/small_indent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_view__about_hotel" />
+
+                        <TextView
+                            android:id="@+id/text_view__hotel_description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_display_regular"
+                            android:includeFontPadding="false"
+                            android:maxLines="5"
+                            android:textColor="#E6000000"
+                            android:textSize="@dimen/text_size"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/chip_group__peculiarities"
+                            tools:text="@tools:sample/lorem/random" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_indent"
+                            app:cardBackgroundColor="#FBFBFC"
+                            app:cardCornerRadius="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_view__hotel_description">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/medium_indent">
+                                android:orientation="vertical">
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/emoji_happy" />
-
+                                <!-- Перввый пункт "Удобства" -->
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="12dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
+                                    android:background="?attr/selectableItemBackground"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/medium_indent">
 
-                                    <TextView
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Удобства"
-                                        android:textSize="@dimen/text_size" />
+                                        android:src="@drawable/emoji_happy" />
 
-                                    <TextView
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Удобства"
+                                            android:textSize="@dimen/text_size" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Самое необходимое"
+                                            android:textColor="#FF828796"
+                                            android:textSize="@dimen/small_text_size" />
+
+                                    </LinearLayout>
+
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Самое необходимое"
-                                        android:textColor="#FF828796"
-                                        android:textSize="@dimen/small_text_size" />
+                                        android:src="@drawable/arrow_forward" />
 
                                 </LinearLayout>
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
+                                <com.google.android.material.divider.MaterialDivider
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/arrow_forward" />
+                                    android:layout_marginHorizontal="@dimen/medium_indent"
+                                    app:dividerColor="#15828796" />
 
-                            </LinearLayout>
-
-                            <com.google.android.material.divider.MaterialDivider
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/medium_indent"
-                                app:dividerColor="#15828796" />
-
-                            <!-- Третий пункт "Что включено" -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/medium_indent">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/include" />
-
+                                <!-- Третий пункт "Что включено" -->
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="12dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
+                                    android:background="?attr/selectableItemBackground"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/medium_indent">
 
-                                    <TextView
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Что включено"
-                                        android:textSize="@dimen/text_size" />
+                                        android:src="@drawable/include" />
 
-                                    <TextView
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Что включено"
+                                            android:textSize="@dimen/text_size" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Самое необходимое"
+                                            android:textColor="#FF828796"
+                                            android:textSize="@dimen/small_text_size" />
+
+                                    </LinearLayout>
+
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Самое необходимое"
-                                        android:textColor="#FF828796"
-                                        android:textSize="@dimen/small_text_size" />
+                                        android:src="@drawable/arrow_forward" />
 
                                 </LinearLayout>
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
+                                <com.google.android.material.divider.MaterialDivider
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/arrow_forward" />
+                                    android:layout_marginHorizontal="@dimen/medium_indent"
+                                    app:dividerColor="#15828796" />
 
-                            </LinearLayout>
-
-                            <com.google.android.material.divider.MaterialDivider
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/medium_indent"
-                                app:dividerColor="#15828796" />
-
-                            <!-- Третий пункт "Что не включено" -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="?attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/medium_indent">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/not_include" />
-
+                                <!-- Третий пункт "Что не включено" -->
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="12dp"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
+                                    android:background="?attr/selectableItemBackground"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/medium_indent">
 
-                                    <TextView
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Что не включено"
-                                        android:textSize="@dimen/text_size" />
+                                        android:src="@drawable/not_include" />
 
-                                    <TextView
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="12dp"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Что не включено"
+                                            android:textSize="@dimen/text_size" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/sf_pro_display_medium"
+                                            android:includeFontPadding="false"
+                                            android:text="Самое необходимое"
+                                            android:textColor="#FF828796"
+                                            android:textSize="@dimen/small_text_size" />
+
+                                    </LinearLayout>
+
+                                    <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/sf_pro_display_medium"
-                                        android:includeFontPadding="false"
-                                        android:text="Самое необходимое"
-                                        android:textColor="#FF828796"
-                                        android:textSize="@dimen/small_text_size" />
+                                        android:src="@drawable/arrow_forward" />
 
                                 </LinearLayout>
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/arrow_forward" />
-
                             </LinearLayout>
 
-                        </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.card.MaterialCardView
-        app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/nestedScrollView"
         android:id="@+id/card__button_hotel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:cardCornerRadius="0dp"
+        app:layout_anchor="@id/nestedScrollView"
+        app:layout_anchorGravity="bottom"
         app:strokeWidth="0dp">
 
         <com.google.android.material.divider.MaterialDivider

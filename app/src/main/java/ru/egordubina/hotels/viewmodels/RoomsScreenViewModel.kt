@@ -17,12 +17,16 @@ import javax.inject.Inject
 @HiltViewModel
 class RoomsScreenViewModel @Inject constructor(
     private val loadApartmentsUseCase: LoadApartmentsUseCase
-): ViewModel() {
+): ViewModel(), IViewModel<RoomsScreenUiState> {
     private val _uiState: MutableStateFlow<RoomsScreenUiState> = MutableStateFlow(RoomsScreenUiState.Loading)
-    val uiState: StateFlow<RoomsScreenUiState> = _uiState.asStateFlow()
+    override val uiState: StateFlow<RoomsScreenUiState> = _uiState.asStateFlow()
     private var job: Job? = null
 
     init {
+        loadData()
+    }
+
+    override fun loadData() {
         _uiState.value = RoomsScreenUiState.Loading
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {

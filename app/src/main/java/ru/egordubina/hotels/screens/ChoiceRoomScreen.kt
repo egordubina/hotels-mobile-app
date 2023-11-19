@@ -86,6 +86,10 @@ class ChoiceRoomScreen : Fragment(R.layout.fragment__choice_of_apartments) {
         binding.apply {
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
             toolbar.title = args.hotelName
+            swipeRefreshLayout.setOnRefreshListener {
+                vm.loadData()
+                swipeRefreshLayout.isRefreshing = false
+            }
         }
     }
 

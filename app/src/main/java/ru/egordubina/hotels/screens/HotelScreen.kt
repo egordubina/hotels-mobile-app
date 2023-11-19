@@ -56,6 +56,16 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            swipeRefreshLayout.setOnRefreshListener {
+                vm.loadData()
+                swipeRefreshLayout.isRefreshing = false
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

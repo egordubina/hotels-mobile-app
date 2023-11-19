@@ -17,10 +17,7 @@ class BookingRepositoryImpl @Inject constructor(
     private val client: HttpClient
 ) : BookingRepository {
     override suspend fun loadBookingInfo(): BookingInfoDomain {
-        val response = client.use {
-            it.get(API_URL_BOOKING).bodyAsText()
-        }
-        Log.d("API", response)
+        val response = client.get(API_URL_BOOKING).bodyAsText()
         return Json.decodeFromString<BookingInfoData>(response).asDomain()
     }
 }

@@ -32,7 +32,7 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
         super.onCreate(savedInstanceState)
         findNavController().addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.bookingScreen)
-                vm.resetUiState()
+                vm.loadData()
         }
         exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
         reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
@@ -103,7 +103,13 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        binding.apply {
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+            swipeRefreshLayout.setOnRefreshListener {
+                vm.loadData()
+                swipeRefreshLayout.isRefreshing = false
+            }
+        }
     }
 
     override fun onDestroyView() {
