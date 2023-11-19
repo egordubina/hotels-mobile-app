@@ -12,13 +12,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
-import ru.egordubina.hotels.adapters.RoomsAdapterItemDecoration
-import ru.egordubina.hotels.adapters.RoomsAdapter
+import ru.egordubina.hotels.adapters.DefaultItemDecorator
 import ru.egordubina.hotels.adapters.ImageSliderAdapter
+import ru.egordubina.hotels.adapters.RoomsAdapter
 import ru.egordubina.hotels.databinding.FragmentChoiceOfApartmentsBinding
 import ru.egordubina.hotels.models.RoomUi
 import ru.egordubina.hotels.uistates.RoomsScreenUiState
@@ -48,7 +49,13 @@ class ChoiceRoomScreen : Fragment(R.layout.fragment__choice_of_apartments) {
                     when (uiState) {
                         is RoomsScreenUiState.Content -> showContent(rooms = uiState.apartments)
 
-                        RoomsScreenUiState.Error -> {}
+                        RoomsScreenUiState.Error ->
+                            Snackbar.make(
+                                binding.swipeRefreshLayout,
+                                getString(R.string.loading_error),
+                                Snackbar.LENGTH_INDEFINITE
+                            ).setAction(R.string.try_retry_load_data) { vm.loadData() }.show()
+
                         RoomsScreenUiState.Loading -> {}
                     }
                 }
@@ -67,7 +74,7 @@ class ChoiceRoomScreen : Fragment(R.layout.fragment__choice_of_apartments) {
                 onButtonClick = { findNavController().navigate(R.id.action_choiceApartments_to_bookingScreen) }
             )
             rvApartments.addItemDecoration(
-                RoomsAdapterItemDecoration(top = requireContext().toPx(8).toInt())
+                DefaultItemDecorator(top = requireContext().toPx(8).toInt())
             )
         }
     }

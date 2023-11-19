@@ -1,11 +1,10 @@
 package ru.egordubina.hotels.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -13,13 +12,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
+import ru.egordubina.hotels.adapters.DefaultItemDecorator
+import ru.egordubina.hotels.adapters.TouristsAdapter
 import ru.egordubina.hotels.databinding.FragmentBookingBinding
 import ru.egordubina.hotels.uistates.BookingScreenUiState
 import ru.egordubina.hotels.utils.getStringNumberOfNights
+import ru.egordubina.hotels.utils.toPx
 import ru.egordubina.hotels.viewmodels.BookingViewModel
 
 @AndroidEntryPoint
@@ -71,10 +74,20 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                                 buttonToPay.text =
                                     getString(R.string.label__to_pay, uiState.totalPrice)
                                 buttonToPay.setOnClickListener { vm.bookingPay() }
+                                rvTourists.adapter = TouristsAdapter(uiState.touristsList)
+                                rvTourists.addItemDecoration(
+                                    DefaultItemDecorator(top = requireContext().toPx(8).toInt())
+                                )
                             }
                         }
 
-                        BookingScreenUiState.Error -> {}
+                        BookingScreenUiState.Error ->
+                            Snackbar.make(
+                                binding.swipeRefreshLayout,
+                                getString(R.string.loading_error),
+                                Snackbar.LENGTH_INDEFINITE
+                            ).setAction(R.string.try_retry_load_data) { vm.loadData() }.show()
+
                         BookingScreenUiState.Loading -> {}
                         is BookingScreenUiState.SuccessfulPay -> {
                             val action = BookingScreenDirections.actionBookingScreenToSuccessPay(
@@ -85,7 +98,6 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
 
                         BookingScreenUiState.UnsuccessfulPay -> {}
                         BookingScreenUiState.LoadingPay -> {}
-                        BookingScreenUiState.Reload -> { }
                     }
                 }
             }

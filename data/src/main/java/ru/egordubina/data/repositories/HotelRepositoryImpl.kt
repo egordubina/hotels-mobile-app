@@ -18,9 +18,7 @@ class HotelRepositoryImpl @Inject constructor(
     private val client: HttpClient
 ) : HotelRepository {
     override suspend fun loadHotel(): DomainHotel {
-        val response = client.use {
-            it.get(API_URL_HOTEL).bodyAsText()
-        }
+        val response = client.get(API_URL_HOTEL).bodyAsText()
         return Json.decodeFromString<HotelData>(response).asDomain()
     }
 }

@@ -1,13 +1,12 @@
 package ru.egordubina.hotels.uistates
 
+import ru.egordubina.hotels.models.TouristUi
+
 sealed class BookingScreenUiState {
     data object Loading : BookingScreenUiState()
     data object LoadingPay : BookingScreenUiState()
     data object Error : BookingScreenUiState()
     data object UnsuccessfulPay : BookingScreenUiState()
-
-    data object Reload : BookingScreenUiState()
-
     data class Content(
         val hotelName: String,
         val hotelAddress: String,
@@ -24,6 +23,7 @@ sealed class BookingScreenUiState {
         val fuelCharge: String,
         val serviceCharge: String,
         val totalPrice: String,
+        val touristsList: List<TouristUi>
     ) : BookingScreenUiState()
 
     data class SuccessfulPay(

@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.egordubina.domain.usecases.LoadBookingInfoUseCase
+import ru.egordubina.hotels.models.TouristUi
 import ru.egordubina.hotels.models.asUi
 import ru.egordubina.hotels.uistates.BookingScreenUiState
 import javax.inject.Inject
@@ -26,10 +28,6 @@ class BookingViewModel @Inject constructor(
     private val _prevUiState: MutableStateFlow<BookingScreenUiState> =
         MutableStateFlow(BookingScreenUiState.Loading)
     private var job: Job? = null
-
-    init {
-        loadData()
-    }
 
     override fun loadData() {
         _uiState.update { BookingScreenUiState.Loading }
@@ -54,6 +52,7 @@ class BookingViewModel @Inject constructor(
                         fuelCharge = result.fuelCharge,
                         serviceCharge = result.serviceCharge,
                         totalPrice = result.totalPrice,
+                        touristsList = listOf(TouristUi(), TouristUi(), TouristUi())
                     )
                 }
                 _prevUiState.update { _uiState.value }
@@ -75,6 +74,12 @@ class BookingViewModel @Inject constructor(
             } catch (e: Exception) {
                 _uiState.update { BookingScreenUiState.UnsuccessfulPay }
             }
+        }
+    }
+
+    fun addTourist() {
+        _uiState.update {
+            (it as BookingScreenUiState.Content).copy(touristsList = it.touristsList + TouristUi())
         }
     }
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -47,7 +48,12 @@ class HotelScreen : Fragment(R.layout.fragment__hotel_screen) {
                     when (uiState) {
                         is HotelScreenUiState.Content -> showContent(uiState)
 
-                        HotelScreenUiState.Error -> {}
+                        HotelScreenUiState.Error ->
+                            Snackbar.make(
+                                binding.swipeRefreshLayout,
+                                getString(R.string.loading_error),
+                                Snackbar.LENGTH_INDEFINITE
+                            ).setAction(R.string.try_retry_load_data) { vm.loadData() }.show()
 
                         HotelScreenUiState.Loading -> {}
                     }

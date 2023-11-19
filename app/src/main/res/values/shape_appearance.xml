@@ -5,6 +5,11 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="ShapeAppearance.Hotel.Button.Icon">
+        <item name="cornerSize">@dimen/small_indent</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
     <style name="ShapeAppearance.Hotel.Image.Corner" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
