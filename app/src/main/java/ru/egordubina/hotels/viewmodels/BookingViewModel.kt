@@ -66,6 +66,7 @@ class BookingViewModel @Inject constructor(
         _uiState.update { BookingScreenUiState.LoadingPay }
         job?.cancel()
         job = viewModelScope.launch {
+            delay(2000) // имитация загрузкии оплаты
             try {
                 val randomBookingNumber = Random.nextInt(100_000, 999_999)
                 _uiState.update {

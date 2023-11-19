@@ -33,4 +33,11 @@
     <string name="loading_error">Ошибка загрузки</string>
     <string name="try_retry_load_data">Повторить</string>
     <string name="title_successfully_payment">Ваш заказ принят в работу</string>
+    <string name="hint_tourist_name">Имя</string>
+    <string name="hint_tourist_surname">Фамилия</string>
+    <string name="hint_tourist_birthday">День рождения</string>
+    <string name="hint_tourist_country">Гражданство</string>
+    <string name="hint_tourist_pas_number">Номер загранпаспорта</string>
+    <string name="hint_tourist_pas_date">Срок действия загранпаспорта</string>
+    <string name="pay_error">Ошибка оплаты</string>
 </resources>
