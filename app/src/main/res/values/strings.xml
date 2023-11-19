@@ -40,4 +40,5 @@
     <string name="hint_tourist_pas_number">Номер загранпаспорта</string>
     <string name="hint_tourist_pas_date">Срок действия загранпаспорта</string>
     <string name="pay_error">Ошибка оплаты</string>
+    <string name="add_tourist_title">Добавить туриста</string>
 </resources>

@@ -14,14 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.egordubina.hotels.R
-import ru.egordubina.hotels.adapters.DefaultItemDecorator
 import ru.egordubina.hotels.adapters.TouristsAdapter
 import ru.egordubina.hotels.databinding.FragmentBookingBinding
+import ru.egordubina.hotels.models.TouristUi
 import ru.egordubina.hotels.uistates.BookingScreenUiState
 import ru.egordubina.hotels.utils.getStringNumberOfNights
-import ru.egordubina.hotels.utils.toPx
 import ru.egordubina.hotels.viewmodels.BookingViewModel
 
 @AndroidEntryPoint
@@ -50,7 +50,7 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
                             !(uiState == BookingScreenUiState.Loading || uiState == BookingScreenUiState.Error)
                     }
                     when (uiState) {
-                        is BookingScreenUiState.Content -> showConnent(uiState)
+                        is BookingScreenUiState.Content -> showContent(uiState)
 
                         BookingScreenUiState.Error -> showError()
 
@@ -105,7 +105,7 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
         _binding = null
     }
 
-    private fun showConnent(uiState: BookingScreenUiState.Content) {
+    private fun showContent(uiState: BookingScreenUiState.Content) {
         binding.apply {
             chipRating.text = getString(
                 R.string.сhip_rating_text,
@@ -128,10 +128,12 @@ class BookingScreen : Fragment(R.layout.fragment__booking) {
             buttonToPay.text =
                 getString(R.string.label__to_pay, uiState.totalPrice)
             buttonToPay.setOnClickListener { vm.bookingPay() }
-            rvTourists.adapter = TouristsAdapter(uiState.touristsList)
-            rvTourists.addItemDecoration(
-                DefaultItemDecorator(top = requireContext().toPx(8).toInt())
-            )
+            rvTourists.adapter = TouristsAdapter { position, tourist ->
+                vm.collapseTouristCard(position, tourist.isVisible)
+            }.also { it.submitList(uiState.touristsList) }
+            buttonAddTourist.setOnClickListener {
+                vm.addTourist()
+            }
         }
     }
 

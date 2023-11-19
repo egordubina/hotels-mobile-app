@@ -366,11 +366,12 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/text_view__add_tourist_title"
                             android:includeFontPadding="false"
                             android:layout_width="0dp"
                             android:layout_weight="0.1"
                             android:layout_height="wrap_content"
-                            android:text="Добавить туриста"
+                            android:text="@string/add_tourist_title"
                             android:textAppearance="@style/TextAppearance.Hotels.Title" />
 
                         <com.google.android.material.button.MaterialButton

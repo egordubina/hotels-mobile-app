@@ -25,8 +25,6 @@ class BookingViewModel @Inject constructor(
     private var _uiState: MutableStateFlow<BookingScreenUiState> =
         MutableStateFlow(BookingScreenUiState.Loading)
     override val uiState: StateFlow<BookingScreenUiState> = _uiState.asStateFlow()
-    private val _prevUiState: MutableStateFlow<BookingScreenUiState> =
-        MutableStateFlow(BookingScreenUiState.Loading)
     private var job: Job? = null
 
     override fun loadData() {
@@ -52,10 +50,9 @@ class BookingViewModel @Inject constructor(
                         fuelCharge = result.fuelCharge,
                         serviceCharge = result.serviceCharge,
                         totalPrice = result.totalPrice,
-                        touristsList = listOf(TouristUi(), TouristUi(), TouristUi())
+                        touristsList = emptyList()
                     )
                 }
-                _prevUiState.update { _uiState.value }
             } catch (e: Exception) {
                 _uiState.update { BookingScreenUiState.Error }
             }
@@ -79,8 +76,36 @@ class BookingViewModel @Inject constructor(
     }
 
     fun addTourist() {
-        _uiState.update {
-            (it as BookingScreenUiState.Content).copy(touristsList = it.touristsList + TouristUi())
+        viewModelScope.launch {
+            val updatedTouristMap = (_uiState.value as BookingScreenUiState.Content).touristsList.toMutableList()
+            updatedTouristMap.add(TouristUi())
+            _uiState.update {
+                (it as BookingScreenUiState.Content).copy(touristsList = updatedTouristMap)
+            }
         }
+    }
+
+    fun collapseTouristCard(touristCardPosition: Int, collapse: Boolean) {
+//        viewModelScope.launch {
+//            if (collapse)
+//                _uiState.update {
+//                    (it as BookingScreenUiState.Content).copy(
+//                        touristsList = it.touristsList.map { touristUi ->
+//                            touristUi.copy(isVisible = false)
+//                        }
+//                    )
+//                }
+//            else
+//                _uiState.update {
+//                    (it as BookingScreenUiState.Content).copy(
+//                        touristsList = it.touristsList.mapIndexed { index, touristUi ->
+//                            if (index == touristCardPosition)
+//                                touristUi.copy(isVisible = true)
+//                            else
+//                                touristUi.copy(isVisible = false)
+//                        }
+//                    )
+//                }
+//        }
     }
 }

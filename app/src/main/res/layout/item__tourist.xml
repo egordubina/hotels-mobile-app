@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/small_indent"
+    app:cardCornerRadius="12dp"
+    app:strokeWidth="0dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -26,6 +29,7 @@
                 tools:text="Первый турист" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/button__collapse_tourist"
                 style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,92 +41,100 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
+        <LinearLayout
+            android:id="@+id/layout__tourist_data"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_name">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName|textCapWords"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_name">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_surname">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName|textCapWords"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_surname">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_birthday">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_birthday">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_country">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textCapWords"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_country">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_pas_number">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_pas_number">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Hotels.TextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_indent"
-            android:hint="@string/hint_tourist_pas_date">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Hotels.TextInput"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="1" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_indent"
+                android:hint="@string/hint_tourist_pas_date">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
